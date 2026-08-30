@@ -9,6 +9,8 @@
 #' @import shiny
 #' @import shinybusy
 #' @import bslib
+#' @import bsicons
+#' @import shinyjs
 #' @import rio
 #' @import dplyr
 #' @import purrr

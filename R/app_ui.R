@@ -4,154 +4,78 @@
 #'     DO NOT REMOVE.
 #' @noRd
 app_ui <- function(request) {
+
   tagList(
 
     # Recursos externos do golem:
     golem_add_external_resources(),
 
+    # Cabeçalho / metadados:
+    tags$head(
 
-    page_fluid(
+      tags$script(
+        HTML(
+          "document.title = 'Organizador • IPERN';"
+        )
+      ),
 
-      title = "",
+      tags$link(
+        rel = "icon",
+        type = "image/x-icon",
+        href = "www/Logo-IPERN.ico"
+      ),
 
-      # Selecionando tema e versão do bootstrap:
-      theme = bs_theme(fg = "#101010",
-                       bg = "#FBF5F5",
-                       primary = "firebrick",
-                       secondary = "firebrick",
+      tags$link(
+        rel = "shortcut icon",
+        href = "www/Logo-IPERN.ico"
+      ),
 
-                       "progress-bar-bg" = "#009E73",
-                       "input-border-color" = "firebrick",
+      tags$link(
+        rel = "stylesheet",
+        type = "text/css",
+        href = "www/styles.css?v=4"
+      ),
 
-                       base_font = font_google("Roboto Slab"),
-                       bootswatch = "united"),
-
-      # Renomeia barra de tarefas:
-      tags$head(tags$script(HTML("document.title = 'Organizador • IPERN';"))),
-
-      # Redimensiona janela do navegador:
-      # tags$head(tags$script(HTML(
-      #   "window.onload = function() {
-      #   var w = 1010, h = 675;
-      #   var left = (screen.width - w) / 2;
-      #   var top = (screen.height - h) / 2;
-      #   window.resizeTo(w, h);
-      #   window.moveTo(left, top);
-      #   };"))),
-
-
-  #     tags$head(
-  #       tags$script(HTML("
-  #   (function() {
-  #     var w = 1400, h = 900;
-  #     var left = (screen.width - w) / 2;
-  #     var top = (screen.height - h) / 2;
-  #     window.resizeTo(w, h);
-  #     window.moveTo(left, top);
-  #   })();
-  #
-  #   window.onload = function() {
-  #     setTimeout(function() {
-  #       window.focus();
-  #     }, 5000);
-  #   };
-  # "))
-  #     ),
+      tags$script(
+        src = "www/handlers.js?v=2"
+      )
+    ),
 
 
-      # Adiciona logo:
-  # tags$head(tags$link(rel = "icon", type = "image/x-icon", href = "www/Logo-IPERN32.ico")),
+    page_navbar(
 
-  tags$head(
-    tags$link(rel = "icon", type = "image/x-icon", href = "www/Logo-IPERN.ico"),
-    tags$link(rel = "shortcut icon", href = "www/Logo-IPERN.ico")
-  ),
+      navbar_options = navbar_options(
+        bg = "#7a0c32"
+      ),
 
+      title = tagList(
 
-      tags$head(tags$style(HTML(".tooltip {font-size:12px;}"))),
+        tags$img(
+          src = "www/Logo IPERN - Branca.png",
+          height = "50px",
+          style = "margin-right: 22px;"
+        ),
 
-      # Altera mensagem de upload:
-      tags$script(HTML("Shiny.addCustomMessageHandler('upload_msg', function(msg) {var target = $('#' + msg.inputId + '_progress').children()[0]; target.innerHTML = msg.text;});")),
+        "Instituto de Previdência dos Servidores do Estado do Rio Grande do Norte"
+      ),
 
-      br(),
+      nav_spacer(),
 
-      # Título do aplicativo:
-      layout_columns(col_widths = c(2, -1, 6, -3),
+      theme = bs_theme(
+        fg = "#101010",
+        bg = "#FFFFFF",
+        primary = "#7a0c32",
+        secondary = "#7a0c32",
+        "input-border-color" = "#7a0c32",
+        base_font = font_google("Roboto Slab"),
+        bootswatch = "united"
+      ),
 
-                     img(src = "www/Logo IPERN.png", width = 80, height = 80),
+      fui_Inicial(),
 
-                     h2(strong("Organizador de Arquivos"), align = "center", style = "position:relative; margin-top:calc(2%)")),
-
-
-      br(),
-
-
-      page_navbar(
-
-        navbar_options = navbar_options(bg = "firebrick"),
-
-
-        title = "",                             # Título da barra
-
-
-        # Página inicial:
-        fui_Inicial(),
-
-
-        # Opções de organização:
-        nav_menu(
-
-          title = "Organize aqui",
-
-
-          # Almoxarifado:
-          fui_Almoxarifado(),
-
-
-          # Controle Pagamentos:
-          fui_ControlePagamentos(),
-
-
-          # Extrato Bancário:
-          fui_ExtratoBancario(),
-
-
-          # Ficha Razão:
-          fui_FichaRazao(),
-
-
-          # Folhas de pagamento:
-          fui_FolhasPagamento(),
-
-
-          # Guia Recebimento:
-          fui_GuiaRecebimento(),
-
-
-          # Controle de Investimento:
-          fui_ControleInvestimentos(),
-
-
-          # Ordens Bancárias:
-          fui_OrdensBancarias(),
-
-
-          # Retenção Realizada:
-          fui_RetencaoRealizada(),
-
-        ), # nav_menu
-
-
-        # Sobre:
-        fui_Sobre(),
-
-
-
-      ) # page_navbar
-
-
-    )   # page_fluid
-  ) # fim do tagList
+      fui_Sobre()
+    )
+  )
 }
 
 #' Adicionar recursos externos ao aplicativo

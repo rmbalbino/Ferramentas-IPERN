@@ -1,40 +1,102 @@
-fui_ExtratoBancario <- function(){
-  
-  nav_panel(title = "Extrato Bancário",    # Título da aba
-            
-            
-            br(),
-            
-            
-            # Inputs:
-            layout_columns(col_widths = c(-1, 2, 4, 4, -1),
-                           
-                           dateInput(inputId = "MesAnoExtrato", label = strong("Competência"), format = "mm/yyyy", language = "pt-br"),
-                           
-                           fileInput(inputId = "BotaoExtratoCC", label = strong("Selecione o Extrato da Conta Corrente"), buttonLabel = "Procurar...", placeholder = ""),
-                           
-                           fileInput(inputId = "BotaoExtratoIN", label = strong("Selecione o Extrato do Investimento"), buttonLabel = "Procurar...", placeholder = "")),
-            
-            
-            br(),
-            
-            
-            # Execução:
-            layout_columns(col_widths = c(-5, 2, -3, 1),
-                           
-                           actionButton(inputId = "ExecutarExtrato", label = "Executar",
-                                        class = "bnt-success", icon = icon("circle-check")),
-                           
-                           actionButton(inputId = "InfoExtrato", label = "", class = "info", icon = icon("info"))),
-            
-            
-            br(),
-            
-            
-            # Saída:
-            layout_columns(col_widths = c(-5, 2, -5),
-                           downloadButton(outputId = "DownloadExtrato",
-                                          label = "Baixar", class = "bnt-success", icon = icon("download"))),
+PainelExtratoBancario <- function() {
+
+  div(
+    class = "ferramenta-conteudo",
+
+    # CABEÇALHO ─────────────────────────────────────────────
+
+    div(
+      class = "ferramenta-cabecalho",
+
+      div(
+        class = "ferramenta-titulo-linha",
+
+        div(
+          h3(
+            "Extrato Bancário",
+            class = "ferramenta-titulo"
+          ),
+
+          p(
+            "Organize e processe extratos de conta corrente ou de investimento.",
+            class = "ferramenta-descricao"
+          )
+        ),
+
+        div(
+          class = "ferramenta-acoes",
+
+          bslib::tooltip(
+            bsicons::bs_icon("person-circle"),
+            "Desenvolvedor: Renan Balbino",
+            placement = "left"
+          ),
+
+          bslib::tooltip(
+            bsicons::bs_icon("info-circle"),
+
+            tagList(
+              "1. Selecione a competência.",
+              br(), br(),
+              "2. Confirme a competência utilizando o botão ao lado dela.",
+              br(), br(),
+              "3. Selecione o arquivo de Extrato Bancário (Banco do Brasil) em formato TXT."
+            ),
+
+            placement = "left"
+          )
+        )
+      )
+    ),
+
+    # STEPPER ─────────────────────────────────────────────
+
+    StepperFerramenta("Extrato"),
+
+    # COMPETÊNCIA ─────────────────────────────────────────────
+
+    CompetenciaFerramenta("Extrato"),
+
+    # UPLOADS ─────────────────────────────────────────────
+
+    UploadFerramenta(
+      inputId = "BotaoExtrato",
+      classe = "upload-extrato",
+      titulo = "Extrato Bancário",
+      titulo_carregado = "Extrato carregado"
+    ),
+
+    # PROCESSAR ─────────────────────────────────────────────
+
+    div(
+      class = "acao-centralizada",
+
+      actionButton(
+        inputId = "ExecutarExtrato",
+        label = tagList(
+          bsicons::bs_icon("gear"),
+          " Processar arquivo"
+        ),
+        class = "btn-processar",
+        disabled = TRUE
+      )
+    ),
+
+    # DOWNLOAD ─────────────────────────────────────────────
+
+    div(
+      class = "acao-centralizada",
+
+      tags$div(
+        id = "DownloadExtrato_wrapper",
+        class = "download-desabilitado",
+
+        downloadButton(
+          outputId = "DownloadExtrato",
+          label = "Baixar arquivo",
+          class = "btn-download"
+        )
+      )
+    )
   )
-  
 }

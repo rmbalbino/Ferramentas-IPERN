@@ -1,0 +1,862 @@
+/* ─────────────────────────────────────────────
+   CARDS DAS FERRAMENTAS
+   ───────────────────────────────────────────── */
+
+.card-ferramenta {
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: #ffffff;
+
+  min-height: 110px;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.card-ferramenta:hover {
+  transform: translateY(-2px);
+  border-color: #7a0c32;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.card-ferramenta .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 8px;
+}
+
+.card-ferramenta svg {
+  color: #7a0c32;
+  margin-bottom: 4px;
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.card-ferramenta h5 {
+  margin-top: 2px;
+  margin-bottom: 3px;
+
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.card-ferramenta p {
+  margin-bottom: 0;
+
+  font-size: 0.78rem;
+  color: #6c757d;
+}
+
+/* ─────────────────────────────────────────────
+   CARD CLICÁVEL
+   ───────────────────────────────────────────── */
+
+.link-card-ferramenta {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.link-card-ferramenta:hover,
+.link-card-ferramenta:focus,
+.link-card-ferramenta:active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.link-card-ferramenta .card-ferramenta {
+  cursor: pointer;
+  height: 100%;
+  margin-bottom: 0;
+}
+
+.link-card-ferramenta:focus-visible .card-ferramenta {
+  outline: 2px solid #7a0c32;
+  outline-offset: 2px;
+}
+
+/* ─────────────────────────────────────────────
+   CARD SELECIONADO
+   ───────────────────────────────────────────── */
+
+.card-ferramenta {
+  position: relative;
+}
+
+.card-ferramenta-selecionado {
+  border-color: #7a0c32;
+  background: #fbf1f4;
+  box-shadow: 0 4px 14px rgba(122, 12, 50, 0.10);
+}
+
+.card-ferramenta-selecionado:hover {
+  border-color: #7a0c32;
+  background: #fbf1f4;
+}
+
+
+/* ─────────────────────────────────────────────
+   PAINEL DA FERRAMENTA
+   ───────────────────────────────────────────── */
+
+.ferramenta-conteudo {
+  padding: 8px 6px;
+}
+
+.ferramenta-cabecalho {
+  margin-bottom: 20px;
+}
+
+.ferramenta-titulo-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ferramenta-titulo {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+
+.ferramenta-descricao {
+  margin-top: 4px;
+  margin-bottom: 0;
+
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.ferramenta-acoes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #7a0c32;
+}
+
+.ferramenta-acoes svg {
+  width: 1.25rem;
+  height: 1.25rem;
+
+  color: #7a0c32;
+}
+
+
+/* ─────────────────────────────────────────────
+   TOOLTIP DE AJUDA
+   ───────────────────────────────────────────── */
+
+.tooltip .tooltip-inner {
+  max-width: 320px;
+  padding: 8px 12px;
+
+  text-align: justify;
+  hyphens: auto;
+
+  font-size: 0.78rem;
+  line-height: 1.4;
+
+  border-radius: 5px;
+
+  background: #2f2f2f;
+  color: #ffffff;
+}
+
+
+/* ─────────────────────────────────────────────
+   STEPPER
+   ───────────────────────────────────────────── */
+
+.etapas-processamento {
+  display: flex;
+  align-items: flex-start;
+
+  width: 100%;
+
+  margin: 22px 0 26px;
+}
+
+.etapa {
+  min-width: 70px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  color: #7a7a7a;
+
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.etapa-numero {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 5px;
+
+  border: 1px solid #a9a9a9;
+  border-radius: 50%;
+
+  background: #ffffff;
+}
+
+.etapa-ativa {
+  color: #7a0c32;
+  font-weight: 600;
+}
+
+.etapa-ativa .etapa-numero {
+  border-color: #7a0c32;
+
+  background: #7a0c32;
+  color: #ffffff;
+}
+
+.etapa-linha {
+  flex: 1;
+
+  height: 1px;
+
+  margin-top: 14px;
+
+  background: #d3d3d3;
+}
+
+
+/* ─────────────────────────────────────────────
+   CAMPOS
+   ───────────────────────────────────────────── */
+
+.campo-ferramenta {
+  margin-bottom: 18px;
+}
+
+
+/* ─────────────────────────────────────────────
+   CONFIRMAÇÃO DA COMPETÊNCIA
+   ───────────────────────────────────────────── */
+
+.competencia-linha {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.competencia-input {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Remove margem criada pelo dateInput */
+.competencia-input .form-group {
+  margin-bottom: 0;
+}
+
+.btn-confirmar-competencia {
+  width: 38px;
+  min-width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: 1px solid #7a0c32 !important;
+  border-radius: 8px !important;
+
+  background: #ffffff !important;
+  color: #7a0c32 !important;
+
+  box-shadow: none !important;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.btn-confirmar-competencia:hover {
+  background: #fbf1f4 !important;
+}
+
+.btn-confirmar-competencia svg {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+}
+
+
+/* Competência confirmada */
+
+.btn-confirmar-competencia.competencia-confirmada {
+  border-color: #7a0c32 !important;
+  background: #7a0c32 !important;
+  color: #ffffff !important;
+}
+
+.btn-confirmar-competencia.competencia-confirmada:hover {
+  background: #650a2a !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   AÇÕES
+   ───────────────────────────────────────────── */
+
+.acao-centralizada {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 18px;
+}
+
+.btn-processar {
+  min-width: 190px;
+
+  border-color: #7a0c32 !important;
+  background: #7a0c32 !important;
+
+  color: #ffffff !important;
+}
+
+.btn-download {
+  min-width: 170px;
+
+  border: 1px solid #7a0c32 !important;
+  background: #ffffff !important;
+
+  color: #7a0c32 !important;
+}
+
+/* Etapas já concluídas */
+
+.etapa-concluida {
+  color: #7a0c32;
+  font-weight: 600;
+}
+
+.etapa-concluida .etapa-numero {
+  border-color: #7a0c32;
+
+  background: #7a0c32;
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+.etapa-linha-concluida {
+  background: #7a0c32;
+}
+
+/* Reforça visual das etapas concluídas */
+
+.etapa.etapa-concluida {
+  color: #7a0c32 !important;
+  font-weight: 600;
+}
+
+.etapa.etapa-concluida .etapa-numero {
+  border-color: #7a0c32 !important;
+  background: #7a0c32 !important;
+  color: #ffffff !important;
+}
+
+.etapa.etapa-concluida span {
+  color: #7a0c32 !important;
+}
+
+.etapa-linha.etapa-linha-concluida {
+  background: #7a0c32 !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   SEM FERRAMENTA SELECIONADA
+   ───────────────────────────────────────────── */
+
+.painel-sem-ferramenta {
+  min-height: 430px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #777777;
+}
+
+.painel-sem-ferramenta svg {
+  margin-bottom: 14px;
+}
+
+
+/* ─────────────────────────────────────────────
+   ÁREA DE UPLOAD
+   ───────────────────────────────────────────── */
+
+.upload-dropzone {
+  position: relative;
+
+  width: 100%;
+  min-height: 105px;
+
+  border: 1.5px dashed #aeb4bb;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.upload-dropzone:hover {
+  border-color: #7a0c32;
+  background: #fdf8fa;
+}
+
+
+/* Conteúdo que o usuário enxerga */
+
+.upload-dropzone-conteudo {
+  min-height: 105px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  padding: 18px 24px;
+
+  pointer-events: none;
+}
+
+.upload-dropzone-conteudo svg {
+  flex-shrink: 0;
+
+  color: #7a0c32;
+}
+
+.upload-dropzone-texto {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.upload-dropzone-texto strong {
+  color: #343434;
+
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.upload-dropzone-texto span {
+  color: #6c757d;
+
+  font-size: 0.82rem;
+}
+
+
+/* fileInput verdadeiro fica transparente sobre a área */
+
+.upload-input-real {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* ocupa toda a área do dropzone */
+.upload-input-real .form-group {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+.upload-input-real .input-group {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/* esconde o campo de texto padrão */
+.upload-input-real .form-control {
+  display: none !important;
+}
+
+/* faz o botão interno ocupar toda a área */
+.upload-input-real .input-group-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.upload-input-real .input-group-btn .btn,
+.upload-input-real .input-group-btn .btn-file {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  opacity: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+
+  cursor: pointer !important;
+}
+
+/* input real de arquivo também cobre toda a área */
+.upload-input-real .input-group-btn input[type="file"] {
+  display: block !important;
+
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  opacity: 0 !important;
+  cursor: pointer !important;
+}
+
+/* Oculta a barra de progresso padrão do fileInput */
+.upload-input-real .progress {
+  display: none !important;
+}
+
+/* Upload com arquivo carregado */
+
+.upload-dropzone.upload-carregado {
+  border-color: #67b35c;
+  background: #eef8ea;
+  box-shadow: inset 0 0 0 1px rgba(103, 179, 92, 0.18);
+}
+
+.upload-dropzone.upload-carregado:hover {
+  border-color: #4e9c44;
+  background: #e7f5e2;
+}
+
+.btn-processar:disabled,
+.btn-processar.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Estado inicial */
+.upload-icone-carregado,
+.upload-texto-carregado,
+.upload-subtexto-carregado {
+  display: none;
+}
+
+/* Estado carregado */
+.upload-dropzone.upload-carregado .upload-icone-inicial,
+.upload-dropzone.upload-carregado .upload-texto-inicial,
+.upload-dropzone.upload-carregado .upload-subtexto-inicial {
+  display: none;
+}
+
+.upload-dropzone.upload-carregado .upload-icone-carregado,
+.upload-dropzone.upload-carregado .upload-texto-carregado,
+.upload-dropzone.upload-carregado .upload-subtexto-carregado {
+  display: block;
+}
+
+/* Ícone de confirmação */
+.upload-dropzone.upload-carregado .upload-icone-carregado svg {
+  color: #4fa443;
+}
+
+.upload-texto-carregando {
+  display: none;
+}
+
+.upload-dropzone.upload-carregando .upload-texto-inicial,
+.upload-dropzone.upload-carregando .upload-subtexto-inicial,
+.upload-dropzone.upload-carregando .upload-texto-carregado,
+.upload-dropzone.upload-carregando .upload-subtexto-carregado,
+.upload-dropzone.upload-carregando .upload-icone-inicial,
+.upload-dropzone.upload-carregando .upload-icone-carregado {
+  display: none;
+}
+
+.upload-dropzone.upload-carregando .upload-texto-carregando {
+  display: block;
+  font-weight: 600;
+}
+
+
+/* ─────────────────────────────────────────────
+   UPLOADS DUPLOS
+   ───────────────────────────────────────────── */
+
+.uploads-duplos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+  width: 100%;
+
+  margin-bottom: 18px;
+}
+
+.uploads-duplos .upload-dropzone {
+  min-width: 0;
+}
+
+/* Textos um pouco menores quando há dois uploads */
+.uploads-duplos .upload-dropzone-conteudo {
+  gap: 10px;
+  padding: 14px 12px;
+}
+
+.uploads-duplos .upload-dropzone-texto strong {
+  font-size: 0.88rem;
+}
+
+.uploads-duplos .upload-dropzone-texto span {
+  font-size: 0.76rem;
+}
+
+
+/* Responsividade */
+@media (max-width: 900px) {
+
+  .uploads-duplos {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* ─────────────────────────────────────────────
+   UPLOAD BLOQUEADO
+   ───────────────────────────────────────────── */
+
+.upload-dropzone.upload-bloqueado {
+  opacity: 0.55;
+  background: #f4f4f4;
+  border-color: #c9c9c9;
+}
+
+.upload-dropzone.upload-bloqueado .upload-input-real {
+  pointer-events: none;
+}
+
+.upload-dropzone.upload-bloqueado:hover {
+  background: #f4f4f4;
+  border-color: #c9c9c9;
+}
+
+
+/* ─────────────────────────────────────────────
+   CAMPO DE COMPETÊNCIA
+   ───────────────────────────────────────────── */
+
+.competencia-data .input-group {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.competencia-data .form-control {
+  border: 1px solid #cfd4da !important;
+  background: #ffffff !important;
+  color: #3d3d3d !important;
+  box-shadow: none !important;
+}
+
+.competencia-data .form-control:focus {
+  border-color: #aeb4bb !important;
+  box-shadow: 0 0 0 0.08rem rgba(120, 120, 120, 0.12) !important;
+}
+
+.competencia-data .input-group-btn .btn,
+.competencia-data .input-group-addon,
+.competencia-data .input-group-text {
+  border: 1px solid #cfd4da !important;
+  border-left: none !important;
+
+  background: #ffffff !important;
+  color: #666666 !important;
+
+  box-shadow: none !important;
+}
+
+.competencia-data .input-group-btn .btn:hover,
+.competencia-data .input-group-addon:hover,
+.competencia-data .input-group-text:hover {
+  background: #f7f7f7 !important;
+  color: #444444 !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   DOWNLOAD
+   ───────────────────────────────────────────── */
+
+.download-desabilitado {
+  pointer-events: none;
+}
+
+.download-desabilitado .btn-download {
+  opacity: 0.45;
+  cursor: not-allowed !important;
+}
+
+.download-liberado {
+  pointer-events: auto;
+}
+
+.download-liberado .btn-download {
+  opacity: 1;
+  cursor: pointer !important;
+}
+
+
+apagar o que?
+/* ─────────────────────────────────────────────
+   NAVBAR
+   ───────────────────────────────────────────── */
+
+.navbar {
+  min-height: 72px;
+  padding: 0 30px !important;
+}
+
+/* Marca */
+
+.navbar-marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  white-space: nowrap;
+
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.navbar-marca svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Navegação */
+
+.navbar .nav-link {
+  min-height: 72px;
+
+  display: flex !important;
+  align-items: center !important;
+
+  padding: 0 14px !important;
+
+  font-weight: 500;
+}
+
+.navbar-brand {
+  display: flex !important;
+  align-items: center !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* ─────────────────────────────────────────────
+   APRESENTAÇÃO
+   ───────────────────────────────────────────── */
+
+.card-apresentacao {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+
+  gap: 24px;
+
+  margin-bottom: 16px;
+  padding: 22px 28px;
+
+  background: #ffffff !important;
+
+  border: 1px solid #dddddd;
+  border-radius: 12px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Ícone */
+
+.card-apresentacao-icone {
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 2px solid #7a0c32;
+  border-radius: 50%;
+
+  color: #7a0c32;
+}
+
+
+/* Texto */
+
+.card-apresentacao-texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  min-width: 0;
+}
+
+.card-apresentacao-titulo {
+  margin: 0 0 6px 0 !important;
+
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.15;
+
+  color: #252525;
+}
+
+.card-apresentacao-descricao {
+  margin: 0 !important;
+
+  font-size: 0.95rem;
+  line-height: 1.4;
+
+  color: #666666;
+}

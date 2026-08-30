@@ -12,14 +12,6 @@
 Format_OrdensBancarias <- function(OrdensBancarias, PP_Retenção = NULL, PP_Empenho = NULL, Órgãos = NULL, Savedir){
 
 
-  # Manipulando mensagens:
-  tryCatch(
-
-
-    # Especificando expressão:
-    expr = {
-
-
 # MANIPULAÇÃO DE DADOS =============================================================================================
 
 # Importando arquivo:
@@ -84,19 +76,7 @@ Aviso <- data.frame(
 OB_Lista <- list(OrdensBancarias, Aviso)
 
 
-
-# Notificacao de sucesso:
-report_success("Organização Finalizada!", "Agora selecione a pasta de sua preferência para baixar o arquivo e utilizá-lo em suas atividades.")
-
-
 return(OB_Lista)
-
-
-  }, # Fim do sucesso
-
-
-# Especificando menssagem de erro:
-error = function(e){ report_failure("Erro!", "Verifique se você selecionou as Ordens Bancárias e se elas estão em formato XLS.")} ) # Fim do erro
 
 
 # EXPORTANDO DADOS =================================================================================================

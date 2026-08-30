@@ -5,13 +5,290 @@
 #' @noRd
 app_server <- function(input, output, session){
 
-  # Dados reativos:
+  # Dados reativos ----------------------------------------------------------------------
   MesAnoReativo <- reactiveValues(MesAno = NULL)
   DadosReativo  <- reactiveValues(Dados = NULL)
 
+  FerramentaSelecionada <- reactiveVal(NULL)
+
+  CompetenciaConfirmadaAlmoxarifado <- reactiveVal(FALSE)
+  DownloadLiberadoAlmoxarifado <- reactiveVal(FALSE)
+  ArquivoSelecionadoAlmoxarifado <- reactiveVal(FALSE)
+  ArquivoDescricaoSelecionadoAlmoxarifado <- reactiveVal(FALSE)
+
+  CompetenciaConfirmadaInvestimento <- reactiveVal(FALSE)
+  DownloadLiberadoInvestimento <- reactiveVal(FALSE)
+  ArquivoSelecionadoInvestimento <- reactiveVal(FALSE)
+  ArquivoArtigosSelecionadoInvestimento <- reactiveVal(FALSE)
+
+  CompetenciaConfirmadaCP <- reactiveVal(FALSE)
+  DownloadLiberadoCP <- reactiveVal(FALSE)
+  ArquivoSelecionadoCP <- reactiveVal(FALSE)
+
+  CompetenciaConfirmadaExtrato <- reactiveVal(FALSE)
+  DownloadLiberadoExtrato <- reactiveVal(FALSE)
+  ArquivoSelecionadoExtrato <- reactiveVal(FALSE)
+
+  CompetenciaConfirmadaRazao <- reactiveVal(FALSE)
+  DownloadLiberadoRazao <- reactiveVal(FALSE)
+  ArquivoSelecionadoRazao <- reactiveVal(FALSE)
+
+  CompetenciaConfirmadaFDP <- reactiveVal(FALSE)
+  DownloadLiberadoFDP <- reactiveVal(FALSE)
+  ArquivoSelecionadoFDP <- reactiveVal(FALSE)
+
+  CompetenciaConfirmadaGR <- reactiveVal(FALSE)
+  DownloadLiberadoGR <- reactiveVal(FALSE)
+  ArquivoSelecionadoGR <- reactiveVal(FALSE)
+
+  CompetenciaConfirmadaOB <- reactiveVal(FALSE)
+  DownloadLiberadoOB <- reactiveVal(FALSE)
+  ArquivoSelecionadoOB <- reactiveVal(FALSE)
+
+  CompetenciaConfirmadaRR <- reactiveVal(FALSE)
+  DownloadLiberadoRR <- reactiveVal(FALSE)
+  ArquivoSelecionadoRR <- reactiveVal(FALSE)
+  ArquivoCNPJSelecionadoRR <- reactiveVal(FALSE)
 
 
-  # Observe Event ---------------------------------------------------------------------------------------------------------------------------------------------
+
+# Servidores das Ferramentas ---------------------------------------------------
+
+  ServerAlmoxarifado(input, session, CompetenciaConfirmadaAlmoxarifado,
+                     DownloadLiberadoAlmoxarifado, ArquivoSelecionadoAlmoxarifado, ArquivoDescricaoSelecionadoAlmoxarifado)
+
+
+  ServerControleInvestimentos(input, session, CompetenciaConfirmadaInvestimento,
+                              DownloadLiberadoInvestimento, ArquivoSelecionadoInvestimento, ArquivoArtigosSelecionadoInvestimento)
+
+
+  ServerControlePagamentos(input, session, CompetenciaConfirmadaCP, DownloadLiberadoCP, ArquivoSelecionadoCP)
+
+
+  ServerExtratoBancario(input, session, CompetenciaConfirmadaExtrato, DownloadLiberadoExtrato, ArquivoSelecionadoExtrato)
+
+
+  ServerFichaRazao(input, session, CompetenciaConfirmadaRazao, DownloadLiberadoRazao, ArquivoSelecionadoRazao)
+
+
+  ServerFolhasPagamento(input, session, CompetenciaConfirmadaFDP, DownloadLiberadoFDP, ArquivoSelecionadoFDP)
+
+
+  ServerGuiaRecebimento(input, session, CompetenciaConfirmadaGR, DownloadLiberadoGR, ArquivoSelecionadoGR)
+
+
+  ServerOrdensBancarias(input, session, CompetenciaConfirmadaOB, DownloadLiberadoOB, ArquivoSelecionadoOB)
+
+
+  ServerRetencaoRealizada(input,session, CompetenciaConfirmadaRR,
+                          DownloadLiberadoRR, ArquivoSelecionadoRR, ArquivoCNPJSelecionadoRR)
+
+
+
+  # Ferramenta Selecionada -----------------------------------------------------
+
+  observeEvent(input$SelecionarAlmoxarifado, {
+    FerramentaSelecionada("almoxarifado")
+  })
+
+  observeEvent(input$SelecionarExtrato, {
+    FerramentaSelecionada("extrato")
+  })
+
+  observeEvent(input$SelecionarFichaRazao, {
+    FerramentaSelecionada("ficha_razao")
+  })
+
+  observeEvent(input$SelecionarFolhas, {
+    FerramentaSelecionada("folhas_pagamento")
+  })
+
+  observeEvent(input$SelecionarGuia, {
+    FerramentaSelecionada("guia_recebimento")
+  })
+
+  observeEvent(input$SelecionarOB, {
+    FerramentaSelecionada("ordens_bancarias")
+  })
+
+  observeEvent(input$SelecionarRetencao, {
+    FerramentaSelecionada("retencao_realizada")
+  })
+
+  observeEvent(input$SelecionarControlePagamentos, {
+    FerramentaSelecionada("controle_pagamentos")
+  })
+
+  observeEvent(input$SelecionarControleInvestimentos, {
+    FerramentaSelecionada("controle_investimentos")
+  })
+
+
+
+  observeEvent(
+    FerramentaSelecionada(),
+    {
+
+      # Almoxarifado:
+      CompetenciaConfirmadaAlmoxarifado(FALSE)
+      DownloadLiberadoAlmoxarifado(FALSE)
+      ArquivoSelecionadoAlmoxarifado(FALSE)
+      ArquivoDescricaoSelecionadoAlmoxarifado(FALSE)
+
+      # Controle Investimentos:
+      CompetenciaConfirmadaInvestimento(FALSE)
+      DownloadLiberadoInvestimento(FALSE)
+      ArquivoSelecionadoInvestimento(FALSE)
+      ArquivoArtigosSelecionadoInvestimento(FALSE)
+
+      # Controle Pagamentos:
+      CompetenciaConfirmadaCP(FALSE)
+      DownloadLiberadoCP(FALSE)
+      ArquivoSelecionadoCP(FALSE)
+
+      CompetenciaConfirmadaExtrato(FALSE)
+      DownloadLiberadoExtrato(FALSE)
+      ArquivoSelecionadoExtrato(FALSE)
+
+      CompetenciaConfirmadaRazao(FALSE)
+      DownloadLiberadoRazao(FALSE)
+      ArquivoSelecionadoRazao(FALSE)
+
+      # Folhas de Pagamento:
+      CompetenciaConfirmadaFDP(FALSE)
+      DownloadLiberadoFDP(FALSE)
+      ArquivoSelecionadoFDP(FALSE)
+
+      CompetenciaConfirmadaGR(FALSE)
+      DownloadLiberadoGR(FALSE)
+      ArquivoSelecionadoGR(FALSE)
+
+      # Ordens Bancárias:
+      CompetenciaConfirmadaOB(FALSE)
+      DownloadLiberadoOB(FALSE)
+      ArquivoSelecionadoOB(FALSE)
+
+      # Retenção Realizada:
+      CompetenciaConfirmadaRR(FALSE)
+      DownloadLiberadoRR(FALSE)
+      ArquivoSelecionadoRR(FALSE)
+      ArquivoCNPJSelecionadoRR(FALSE)
+
+      # Resultado compartilhado:
+      MesAnoReativo$MesAno <- NULL
+      DadosReativo$Dados <- NULL
+
+    },
+    ignoreInit = TRUE
+  )
+
+
+
+  # Painel de Ferramenta -------------------------------------------------------
+
+  output$PainelFerramenta <- renderUI({
+
+    Ferramenta <- FerramentaSelecionada()
+
+    if (is.null(Ferramenta)) {
+
+      return(
+        div(
+          class = "painel-sem-ferramenta",
+
+          bsicons::bs_icon(
+            "window",
+            size = "3rem"
+          ),
+
+          h4("Selecione uma ferramenta"),
+
+          p(
+            "A aplicação selecionada será exibida neste espaço.",
+            class = "text-muted"
+          )
+        )
+      )
+    }
+
+    if (identical(Ferramenta, "almoxarifado")) {
+      return(
+        PainelAlmoxarifado()
+      )
+    }
+
+
+    if (identical(Ferramenta, "controle_investimentos")) {
+      return(
+        PainelControleInvestimentos()
+      )
+    }
+
+
+    if (identical(Ferramenta, "controle_pagamentos")) {
+      return(
+        PainelControlePagamentos()
+      )
+    }
+
+
+    if (identical(Ferramenta, "extrato")) {
+      return(
+        PainelExtratoBancario()
+      )
+    }
+
+
+    if (identical(Ferramenta, "ficha_razao")) {
+      return(
+        PainelFichaRazao()
+      )
+    }
+
+
+    if (identical(Ferramenta, "folhas_pagamento")) {
+      return(PainelFolhasPagamento())
+    }
+
+
+    if (identical(Ferramenta, "guia_recebimento")) {
+      return(
+        PainelGuiaRecebimento()
+      )
+    }
+
+
+    if (identical(Ferramenta, "ordens_bancarias")) {
+      return(
+        PainelOrdensBancarias()
+      )
+    }
+
+
+    if (identical(Ferramenta, "retencao_realizada")) {
+      return(
+        PainelRetencaoRealizada()
+      )
+    }
+
+
+
+    # Temporário para as demais ferramentas
+    div(
+      class = "painel-sem-ferramenta",
+
+      h4("Ferramenta selecionada"),
+
+      p(
+        "Esta interface será adicionada na próxima Etapa.",
+        class = "text-muted"
+      )
+    )
+  })
+
+
+
+  # Processamento --------------------------------------------------------------
 
 
   # Função para resumir código:
@@ -19,8 +296,9 @@ app_server <- function(input, output, session){
 
 
     # Ativando tela de loading:
-    show_modal_spinner(spin = "semipolar", color = "#de231a", text = "Aguarde...")
+    show_modal_spinner(spin = "semipolar", color = "#de231a", text = "Processando...")
 
+    on.exit(remove_modal_spinner(), add = TRUE)
 
     # Rodando a função:
     Dados <- Função
@@ -30,7 +308,7 @@ app_server <- function(input, output, session){
 
 
     # Finalizando tela de loading:
-    remove_modal_spinner()
+    # remove_modal_spinner()
 
 
     # Alterando formato:
@@ -40,179 +318,37 @@ app_server <- function(input, output, session){
     MesAnoReativo$MesAno <- MesAno
 
 
+    invisible(Dados)
+
   }
 
 
-  file_inputs <- reactive({ list(BotaoAlmoxarifado = input$BotaoAlmoxarifado,
-                                 BotaoDescrição = input$BotaoDescrição,
-                                 BotaoCP = input$BotaoCP,
-                                 BotaoExtratoCC = input$BotaoExtratoCC,
-                                 BotaoExtratoIN = input$BotaoExtratoIN,
-                                 BotaoRazao = input$BotaoRazao,
-                                 BotaoGR = input$BotaoGR,
-                                 BotaoClassificacao = input$BotaoClassificacao,
-                                 BotaoOrgao = input$BotaoOrgao,
-                                 BotaoInvestimento = input$BotaoInvestimento,
-                                 BotaoArtigos = input$BotaoArtigos,
-                                 BotaoOB = input$BotaoOB,
-                                 BotaoOR = input$BotaoOR,
-                                 BotaoDE = input$BotaoDE,
-                                 BotaoRR = input$BotaoRR,
-                                 BotaoRRCNPJ = input$BotaoRRCNPJ,
-                                 # BotaoORGFDP = input$BotaoORGFDP,
-                                 BotaoARQFDP = input$BotaoARQFDP) })
 
+  ProcessarAlmoxarifado(input, session, Observ_function, DownloadLiberadoAlmoxarifado)
 
 
-  # Observe the reactive expression
-  observe({
+  ProcessarExtratoBancario(input, session, Observ_function, DownloadLiberadoExtrato)
 
-    inputs <- file_inputs()
 
-    purrr::map(names(inputs), function(x){
+  ProcessarFichaRazao(input, session, Observ_function, DownloadLiberadoRazao)
 
-      if (!is.null(inputs[[x]])) {
 
-        session$sendCustomMessage("upload_msg", list(inputId = x, text = "Carregamento completo")) } })
+  ProcessarFolhasPagamento(input, session, Observ_function, DownloadLiberadoFDP)
 
-  })
 
+  ProcessarOrdensBancarias(input, session, Observ_function, DownloadLiberadoOB)
 
-  # Almoxarifado:
-  observeEvent(input$ExecutarAlmoxarifado, { Observ_function(MesAno = input$MesAnoAlmoxarifado,
-                                                             Função = Format_Almoxarifado(input$BotaoAlmoxarifado$datapath, input$BotaoDescrição$datapath)) })
 
+  ProcessarControlePagamentos(input, session, Observ_function, DownloadLiberadoCP)
 
-  # Extrato Bancário:
-  observeEvent(input$ExecutarExtrato, {
 
-    if(!is.null(input$BotaoExtratoCC$datapath)){
+  ProcessarGuiaRecebimento(input, session, Observ_function, DownloadLiberadoGR)
 
-      Observ_function(MesAno = input$MesAnoExtrato, Função = Extrair_Extrato(input$BotaoExtratoCC$datapath))
 
+  ProcessarControleInvestimentos(input, session, Observ_function, DownloadLiberadoInvestimento)
 
-    } else{ Observ_function(MesAno = input$MesAnoExtrato, Função = Extrair_Extrato_IN(input$BotaoExtratoIN$datapath)) } })
 
-
-
-  # Ficha Razão:
-  observeEvent(input$ExecutarRazao, { Observ_function(MesAno = input$MesAnoRazao, Função = Extrair_Razao(input$BotaoRazao$datapath)) })
-
-
-  # # Folhas de Pagamento:
-  # observeEvent(input$ExecutarFDP, { Observ_function(MesAno = input$MesAnoFDP,
-  #
-  #                                                   Função = Ext_FPag(input$MesAnoFDP,
-  #                                                                     input$BotaoARQFDP$name,
-  #                                                                     input$BotaoARQFDP$datapath,
-  #                                                                     input$BotaoFDPTipo)) })
-
-
-  # Folhas de Pagamento:
-  observeEvent(input$ExecutarFDP, {
-
-    if(input$BotaoFDPClasse == "Normal"){
-
-      Observ_function(MesAno = input$MesAnoFDP,
-
-                      Função = Ext_FPag(input$MesAnoFDP,
-                                        input$BotaoARQFDP$name,
-                                        input$BotaoARQFDP$datapath,
-                                        input$BotaoFDPTipo))
-
-    } else if(input$BotaoFDPClasse == "REL04 Escaneado"){
-
-      Observ_function(MesAno = input$MesAnoFDP,
-
-                      Função = Ext_FPagS(input$MesAnoFDP,
-                                         input$BotaoARQFDP$name,
-                                         input$BotaoARQFDP$datapath,
-                                         input$BotaoFDPTipo))
-
-    } else if(input$BotaoFDPClasse == "REL02 Escaneado"){
-
-      req(input$BotaoARQFDP)
-
-      Observ_function(MesAno = input$MesAnoFDP,
-
-                      Função = Ext_FPagP(input$MesAnoFDP,
-                                         input$BotaoARQFDP$name,
-                                         input$BotaoARQFDP$datapath,
-                                         input$BotaoFDPTipo)) } })
-
-
-  # Ordens Bancárias:
-  observeEvent(input$ExecutarOB, {
-
-    if(!is.null(input$BotaoOR$datapath) & !is.null(input$BotaoDE$datapath)){
-
-      Observ_function(MesAno = input$MesAnoOB, Função = Format_OrdensBancarias(input$BotaoOB$datapath, input$BotaoOR$datapath, input$BotaoDE$datapath))
-
-    } else{ Observ_function(MesAno = input$MesAnoOB, Função = Format_OrdensBancarias(input$BotaoOB$datapath)) } })
-
-
-  # Controle Pagamento:
-  observeEvent(input$ExecutarCP, { Observ_function(MesAno = input$MesAnoCP, Função = Format_Plan(input$BotaoCP$datapath, input$BotaoCP$name)) })
-
-
-  # Guia Recebimento:
-  observeEvent(input$ExecutarGR, {
-
-
-    if(!is.null(input$BotaoClassificacao$datapath) & !is.null(input$BotaoOrgao$datapath)){
-
-      Observ_function(MesAno = input$MesAnoGR, Função = Format_GR(input$BotaoGR$datapath, input$BotaoClassificacao$datapath, input$BotaoOrgao$datapath))
-
-    } else{ Observ_function(MesAno = input$MesAnoGR, Função = Format_GR(input$BotaoGR$datapath)) } })
-
-
-  # Investimentos:
-  observeEvent(input$ExecutarInvestimento, { Observ_function(MesAno = input$MesAnoInvestimento,
-                                                             Função = Extrair_Geral(input$BotaoInvestimento$name, input$MesAnoInvestimento,
-                                                                                    input$BotaoInvestimento$datapath, input$BotaoArtigos$datapath)) })
-
-
-  # Retenção Realizada:
-  observeEvent(input$ExecutarRR, { Observ_function(MesAno = input$MesAnoRR, Função = Format_Retenção(input$BotaoRR$datapath, input$BotaoRRCNPJ$datapath)) })
-
-
-
-  # Botões de Informação --------------------------------------------------------------------------------------------------------------------------------------
-
-  # Extrato:
-  observeEvent(input$InfoExtrato, { report_info("Atenção!", "O arquivo precisa estar no formato TXT. Além disso, só deve ser executado um tipo de Extrato por vez.") })
-
-
-  # Ficha Razão:
-  observeEvent(input$InfoRazao, { report_info("Atenção!", "O arquivo precisa estar no formato PDF.") })
-
-
-  # Folhas de Pagamento:
-  observeEvent(input$InfoFDP, { report_info("Atenção!", "As Folhas de Pagamento devem estar no formato PDF. Além disso, todas as folhas de Décimo Terceiro devem ter 13º em seu nome. Se necessário, execute o aplicativo 'Renomear PDFs 13º' para realizar os ajustes.") })
-
-
-  # Guia Recebimento:
-  observeEvent(input$InfoGR, { report_info("Atenção!", "O arquivo do SIGEF precisa estar no formato XLS. Não é obrigatório selecionar a planilha de Classificação ou Órgãos.") })
-
-
-  # Controle Investimentos:
-  observeEvent(input$InfoInvestimento, { report_info("Atenção!", "Escolha uma pasta e selecione extratos dentro dela. Depois, selecione a planilha com Artigos") })
-
-
-  # Ordem Bancária:
-  observeEvent(input$InfoOB, { report_info("Atenção!", "O arquivo precisa estar no formato XLS. Não é obrigatório selecionar as planilhas de PPs.") })
-
-
-  # Retenção Realizada:
-  observeEvent(input$InfoRR, { report_info("Atenção!", "O arquivo do SIGEF precisa estar no formato XLS. Também não esqueça de selecionar a planilha com CNPJs.") })
-
-
-  # Controle Pagamentos:
-  observeEvent(input$InfoCP, { report_info("Atenção!", "Escolha uma pasta e selecione as planilhas dentro dela.") })
-
-
-  # Almoxarifado:
-  observeEvent(input$InfoAlmoxarifado, { report_info("Atenção!", "O arquivo do Almoxarifado precisa estar no formato PDF. Também não esqueça de selecionar a planilha com a Descrição.") })
+  ProcessarRetencaoRealizada(input, session, Observ_function, DownloadLiberadoRR)
 
 
 

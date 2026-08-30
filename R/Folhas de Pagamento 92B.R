@@ -18,14 +18,6 @@
 Ext_FPagS <- function(COMPETÊNCIA, NOMES, ARQUIVOS, DECIMO){
 
 
-  # Manipulando mensagens:
-  tryCatch(
-
-
-    # Especificando expressão:
-    expr = {
-
-
 
       # PRIMEIROS PASSOS =================================================================================================
 
@@ -292,18 +284,7 @@ Ext_FPagS <- function(COMPETÊNCIA, NOMES, ARQUIVOS, DECIMO){
       names(Planilhas) <- c("Alerta Servidor", "Folhas")
 
 
-      # Notificacao de sucesso:
-      report_success("Organização Finalizada!", "Agora selecione a pasta de sua preferência para baixar o arquivo e utilizá-lo em suas atividades.")
-
-
       return(Planilhas)
-
-
-    }, # Fim do sucesso
-
-
-    # Especificando menssagem de erro:
-    error = function(e){ report_failure("Erro!", "Verifique se você selecionou os dados corretos.")} ) # Fim do erro
 
 
 }
@@ -323,14 +304,6 @@ Ext_FPagS <- function(COMPETÊNCIA, NOMES, ARQUIVOS, DECIMO){
 
 # Função de extração:
 Ext_FPagP <- function(COMPETÊNCIA, NOMES, ARQUIVOS, DECIMO){
-
-
-  # Manipulando mensagens:
-  tryCatch(
-
-
-    # Especificando expressão:
-    expr = {
 
 
 
@@ -582,18 +555,7 @@ Ext_FPagP <- function(COMPETÊNCIA, NOMES, ARQUIVOS, DECIMO){
       names(Planilhas) <- c("Alerta Patronal", "Folhas")
 
 
-      # Notificacao de sucesso:
-      report_success("Organização Finalizada!", "Agora selecione a pasta de sua preferência para baixar o arquivo e utilizá-lo em suas atividades.")
-
-
       return(Planilhas)
-
-
-    }, # Fim do sucesso
-
-
-    # Especificando menssagem de erro:
-    error = function(e){ report_failure("Erro!", "Verifique se você selecionou os dados corretos.")} ) # Fim do erro
 
 
 }

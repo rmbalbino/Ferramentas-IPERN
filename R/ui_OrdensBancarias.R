@@ -1,43 +1,112 @@
-fui_OrdensBancarias <- function(){
-  
-  nav_panel(title = "Ordens Bancárias", # Título da aba
-            
-            
-            # Inputs:
-            layout_columns(col_widths = c(-2, 2, -1, 5, -2),
-                           
-                           dateInput(inputId = "MesAnoOB", label = strong("Competência"), format = "mm/yyyy", language = "pt-br"),
-                           
-                           fileInput(inputId = "BotaoOB", label = strong("Selecione as Ordens Bancárias"), buttonLabel = "Procurar...", placeholder = "")),
-            
-            
-            # layout_columns(col_widths = c(-2, 4, 4, -2),
-            #
-            #                fileInput(inputId = "BotaoOR", label = strong("Selecione a planilha PP Servidor"), buttonLabel = "Procurar...", placeholder = ""),
-            #
-            #                fileInput(inputId = "BotaoDE", label = strong("Selecione a planilha PP Patronal"), buttonLabel = "Procurar...", placeholder = "")),
-            
-            
-            br(),
-            
-            
-            # Execução:
-            layout_columns(col_widths = c(-5, 2, -3, 1),
-                           
-                           actionButton(inputId = "ExecutarOB", label = "Executar",
-                                        class = "bnt-success", icon = icon("circle-check")),
-                           
-                           actionButton(inputId = "InfoOB", label = "", class = "info", icon = icon("info"))),
-            
-            
-            br(),
-            
-            
-            # Saída:
-            layout_columns(col_widths = c(-5, 2, -5),
-                           downloadButton(outputId = "DownloadOB",
-                                          label = "Baixar", class = "bnt-success", icon = icon("download"))),
-            
+PainelOrdensBancarias <- function() {
+
+  div(
+    class = "ferramenta-conteudo",
+
+    # CABEÇALHO ─────────────────────────────────────────────
+
+    div(
+      class = "ferramenta-cabecalho",
+
+      div(
+        div(
+          class = "ferramenta-titulo-linha",
+
+          h3(
+            "Ordens Bancárias",
+            class = "ferramenta-titulo"
+          ),
+
+          div(
+            class = "ferramenta-acoes",
+
+            bslib::tooltip(
+              bsicons::bs_icon("person-circle"),
+              "Desenvolvedor: Renan Balbino",
+              placement = "left"
+            ),
+
+            bslib::tooltip(
+              bsicons::bs_icon("info-circle"),
+
+              tagList(
+                "1. Selecione a competência.",
+                br(), br(),
+                "2. Confirme a competência utilizando o botão ao lado dela.",
+                br(), br(),
+                "3. O arquivo precisa estar no formato XLS."
+              ),
+
+              placement = "left"
+            )
+          )
+        ),
+
+        p(
+          "Organize e consolide arquivos de ordens bancárias.",
+          class = "ferramenta-descricao"
+        )
+      )
+    ),
+
+
+    # ETAPAS ─────────────────────────────────────────────
+
+    StepperFerramenta("OB"),
+
+
+    # COMPETÊNCIA ─────────────────────────────────────────────
+
+    CompetenciaFerramenta ("OB"),
+
+
+    # ARQUIVOS ─────────────────────────────────────────────
+
+    div(
+      class = "campo-ferramenta",
+
+      UploadFerramenta(
+        inputId = "BotaoOB",
+        classe = "upload-ob",
+        titulo = "Selecione as Ordens Bancárias",
+        titulo_carregado = "Arquivos carregados",
+        multiple = TRUE,
+        tamanho_icone = "2.4rem"
+      )
+    ),
+
+
+    # PROCESSAR ─────────────────────────────────────────────
+
+    div(
+      class = "acao-centralizada",
+
+      actionButton(
+        inputId = "ExecutarOB",
+        label = tagList(
+          bsicons::bs_icon("gear"),
+          " Processar arquivos"
+        ),
+        class = "btn-processar",
+        disabled = TRUE
+      )
+    ),
+
+    # DOWNLOAD ─────────────────────────────────────────────
+
+    div(
+      class = "acao-centralizada",
+
+      tags$div(
+        id = "DownloadOB_wrapper",
+        class = "download-desabilitado",
+
+        downloadButton(
+          outputId = "DownloadOB",
+          label = "Baixar arquivo",
+          class = "btn-download"
+        )
+      )
+    )
   )
-  
 }

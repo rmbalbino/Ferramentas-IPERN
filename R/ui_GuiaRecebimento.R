@@ -1,43 +1,102 @@
-fui_GuiaRecebimento <- function(){
-  
-  nav_panel(title = "Guia Recebimento", # Título da aba
-            
-            
-            # Inputs:
-            layout_columns(col_widths = c(-2, 2, -1, 5, -2),
-                           
-                           dateInput(inputId = "MesAnoGR", label = strong("Competência"), format = "mm/yyyy", language = "pt-br"),
-                           
-                           fileInput(inputId = "BotaoGR", label = strong("Selecione o Guia Recebimento"), buttonLabel = "Procurar...", placeholder = "")),
-            
-            
-            # layout_columns(col_widths = c(-2, 4, 4, -2),
-            #
-            #   fileInput(inputId = "BotaoClassificacao", label = strong("Selecione a planilha de Classificação"), buttonLabel = "Procurar...", placeholder = ""),
-            #
-            #   fileInput(inputId = "BotaoOrgao", label = strong("Selecione a planilha de Órgãos"), buttonLabel = "Procurar...", placeholder = "")),
-            
-            
-            br(),
-            
-            
-            # Execução:
-            layout_columns(col_widths = c(-5, 2, -3, 1),
-                           
-                           actionButton(inputId = "ExecutarGR", label = "Executar",
-                                        class = "bnt-success", icon = icon("circle-check")),
-                           
-                           actionButton(inputId = "InfoGR", label = "", class = "info", icon = icon("info"))),
-            
-            
-            br(),
-            
-            
-            # Saída:
-            layout_columns(col_widths = c(-5, 2, -5),
-                           downloadButton(outputId = "DownloadGR",
-                                          label = "Baixar", class = "bnt-success", icon = icon("download"))),
-            
+PainelGuiaRecebimento <- function() {
+
+  div(
+    class = "ferramenta-conteudo",
+
+    # CABEÇALHO ─────────────────────────────────────────────
+
+    div(
+      class = "ferramenta-cabecalho",
+
+      div(
+        class = "ferramenta-titulo-linha",
+
+        div(
+          h3(
+            "Guia de Recebimento",
+            class = "ferramenta-titulo"
+          ),
+
+          p(
+            "Organize e processe os arquivos de guia de recebimento.",
+            class = "ferramenta-descricao"
+          )
+        ),
+
+        div(
+          class = "ferramenta-acoes",
+
+          bslib::tooltip(
+            bsicons::bs_icon("person-circle"),
+            "Desenvolvedor: Renan Balbino",
+            placement = "left"
+          ),
+
+          bslib::tooltip(
+            bsicons::bs_icon("info-circle"),
+
+            tagList(
+              "1. Selecione a competência.",
+              br(), br(),
+              "2. Confirme a competência utilizando o botão ao lado dela.",
+              br(), br(),
+              "3. Selecione o arquivo de Guia de Recebimento."
+            ),
+
+            placement = "left"
+          )
+        )
+      )
+    ),
+
+    # STEPPER ─────────────────────────────────────────────
+
+    StepperFerramenta("GR"),
+
+    # COMPETÊNCIA ─────────────────────────────────────────────
+
+    CompetenciaFerramenta("GR"),
+
+    # UPLOAD ─────────────────────────────────────────────
+
+    UploadFerramenta(
+      inputId = "BotaoGR",
+      classe = "upload-gr",
+      titulo = "Guia de Recebimento",
+      titulo_carregado = "Guia carregado"
+    ),
+
+    # PROCESSAR ─────────────────────────────────────────────
+
+    div(
+      class = "acao-centralizada",
+
+      actionButton(
+        inputId = "ExecutarGR",
+        label = tagList(
+          bsicons::bs_icon("gear"),
+          " Processar arquivo"
+        ),
+        class = "btn-processar",
+        disabled = TRUE
+      )
+    ),
+
+    # DOWNLOAD ─────────────────────────────────────────────
+
+    div(
+      class = "acao-centralizada",
+
+      tags$div(
+        id = "DownloadGR_wrapper",
+        class = "download-desabilitado",
+
+        downloadButton(
+          outputId = "DownloadGR",
+          label = "Baixar arquivo",
+          class = "btn-download"
+        )
+      )
+    )
   )
-  
 }
