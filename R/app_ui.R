@@ -37,7 +37,7 @@ app_ui <- function(request) {
       ),
 
       tags$script(
-        src = "www/handlers.js?v=2"
+        src = "www/handlers.js?v=5"
       )
     ),
 

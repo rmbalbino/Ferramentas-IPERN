@@ -209,20 +209,11 @@ fui_Sobre <- function() {
                     Nome = "Renan Balbino",
                     Formacao = "Ciências Atuariais",
                     Instituicao = "Universidade Federal do Rio Grande do Norte",
-                    Email = "renan.dmbalbino@gmail.com",
+                    Email = "rmbalbino@hotmail.com",
                     Github = "https://github.com/rmbalbino",
                     Linkedin = "https://www.linkedin.com/in/rmbalbino",
                     Orcid = "https://orcid.org/0009-0003-7665-9928",
                     Lattes = "http://lattes.cnpq.br/9741799948855362"
-                  ),
-
-                  CardDesenvolvedor(
-                    Nome = "Lucas Bezerra",
-                    Formacao = "Graduando em Ciências Atuariais",
-                    Instituicao = "Universidade Federal do Rio Grande do Norte",
-                    Email = "lucas17bezerra@gmail.com",
-                    Github = "https://github.com/lucasbezerra12",
-                    Linkedin = "https://www.linkedin.com/in/lucas-gustavo-pegado-bezerra-881ab6276",
                   ),
 
                   CardDesenvolvedor(
@@ -232,6 +223,15 @@ fui_Sobre <- function() {
                     Email = "sueliojunior4@gmail.com",
                     Github = "https://github.com/Suelio99",
                     Linkedin = "https://www.linkedin.com/in/su%C3%A9lio-j%C3%BAnior-734675178/",
+                  ),
+
+                  CardDesenvolvedor(
+                    Nome = "Lucas Bezerra",
+                    Formacao = "Graduando em Ciências Atuariais",
+                    Instituicao = "Universidade Federal do Rio Grande do Norte",
+                    Email = "lucas17bezerra@gmail.com",
+                    Github = "https://github.com/lucasbezerra12",
+                    Linkedin = "https://www.linkedin.com/in/lucas-gustavo-pegado-bezerra-881ab6276",
                   )
                 )
               )

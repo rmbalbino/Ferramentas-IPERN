@@ -1,4 +1,4 @@
-PainelControlePagamentos <- function() {
+PainelConciliadorContaCorrente <- function() {
 
   div(
     class = "ferramenta-conteudo",
@@ -13,12 +13,12 @@ PainelControlePagamentos <- function() {
 
         div(
           h3(
-            "Controle de Pagamentos",
+            "Conta Corrente 7988X",
             class = "ferramenta-titulo"
           ),
 
           p(
-            "Organize e processe os arquivos utilizados no controle de pagamentos.",
+            "Concilie o Extrato Bancário com a Ficha Razão.",
             class = "ferramenta-descricao"
           )
         ),
@@ -28,7 +28,7 @@ PainelControlePagamentos <- function() {
 
           bslib::tooltip(
             bsicons::bs_icon("person-circle"),
-            "Desenvolvedor: Suélio Júnior",
+            "Desenvolvedor: Renan Balbino",
             placement = "left"
           ),
 
@@ -40,7 +40,9 @@ PainelControlePagamentos <- function() {
               br(), br(),
               "2. Confirme a competência utilizando o botão ao lado dela.",
               br(), br(),
-              "3. Selecione os arquivos utilizados no Controle de Pagamentos."
+              "3. Selecione o Extrato Bancário (TXT).",
+              br(), br(),
+              "4. Selecione a Ficha Razão (PDF)."
             ),
 
             placement = "left"
@@ -51,20 +53,34 @@ PainelControlePagamentos <- function() {
 
     # STEPPER ─────────────────────────────────────────────
 
-    StepperFerramenta("CP"),
+    StepperFerramenta(
+      prefixo = "ConciliadorContaCorrente"
+    ),
 
     # COMPETÊNCIA ─────────────────────────────────────────────
 
-    CompetenciaFerramenta("CP"),
+    CompetenciaFerramenta(
+      "ConciliadorContaCorrente"
+    ),
 
-    # UPLOAD ─────────────────────────────────────────────
+    # UPLOADS ─────────────────────────────────────────────
 
-    UploadFerramenta(
-      inputId = "BotaoCP",
-      classe = "upload-cp",
-      titulo = "Arquivos do Controle de Pagamentos",
-      titulo_carregado = "Arquivos carregados",
-      multiple = TRUE
+    div(
+      class = "uploads-duplos",
+
+      UploadFerramenta(
+        inputId = "BotaoConciliadorContaCorrenteExtrato",
+        classe = "upload-conciliador-conta-corrente-extrato",
+        titulo = "Extrato Bancário",
+        titulo_carregado = "Extrato carregado"
+      ),
+
+      UploadFerramenta(
+        inputId = "BotaoConciliadorContaCorrenteRazao",
+        classe = "upload-conciliador-conta-corrente-razao",
+        titulo = "Ficha Razão",
+        titulo_carregado = "Ficha Razão carregada"
+      )
     ),
 
     # PROCESSAR ─────────────────────────────────────────────
@@ -73,7 +89,7 @@ PainelControlePagamentos <- function() {
       class = "acao-centralizada",
 
       actionButton(
-        inputId = "ExecutarCP",
+        inputId = "ExecutarConciliadorContaCorrente",
         label = tagList(
           bsicons::bs_icon("gear"),
           " Processar arquivos"
@@ -89,11 +105,11 @@ PainelControlePagamentos <- function() {
       class = "acao-centralizada",
 
       tags$div(
-        id = "DownloadCP_wrapper",
+        id = "DownloadConciliadorContaCorrente_wrapper",
         class = "download-desabilitado",
 
         downloadButton(
-          outputId = "DownloadCP",
+          outputId = "DownloadConciliadorContaCorrente",
           label = "Baixar arquivo",
           class = "btn-download"
         )

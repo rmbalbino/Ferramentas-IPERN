@@ -75,63 +75,77 @@ fui_Inicial <- function() {
                 inputId = "SelecionarAlmoxarifado",
                 icone = "archive",
                 titulo = "Almoxarifado",
-                descricao = "Organizar arquivos"
+                descricao = "Consolidador"
               ),
 
               CardFerramenta(
-                inputId = "SelecionarControlePagamentos",
-                icone = "cash-stack",
-                titulo = "Controle Pagamentos",
-                descricao = "Processar pagamentos"
-              ),
-
-              CardFerramenta(
-                inputId = "SelecionarExtrato",
-                icone = "bank",
-                titulo = "Extrato Bancário",
-                descricao = "Consolidar extratos"
-              ),
-
-              CardFerramenta(
-                inputId = "SelecionarFichaRazao",
-                icone = "file-earmark-text",
-                titulo = "Ficha Razão",
-                descricao = "Processar ficha"
-              ),
-
-              CardFerramenta(
-                inputId = "SelecionarFolhas",
-                icone = "people",
-                titulo = "Folhas de Pagamento",
-                descricao = "Processar folhas"
-              ),
-
-              CardFerramenta(
-                inputId = "SelecionarGuia",
-                icone = "receipt",
-                titulo = "Guia de Recebimento",
-                descricao = "Processar guias"
+                inputId = "SelecionarConciliadorContaCorrente",
+                icone = "check2-square",
+                titulo = "C. Corrente 7988X",
+                descricao = "Conciliador"
               ),
 
               CardFerramenta(
                 inputId = "SelecionarControleInvestimentos",
                 icone = "graph-up-arrow",
                 titulo = "Controle Investimentos",
-                descricao = "Processar investimentos"
+                descricao = "Consolidador"
+              ),
+
+              CardFerramenta(
+                inputId = "SelecionarControlePagamentos",
+                icone = "cash-stack",
+                titulo = "Controle Pagamentos",
+                descricao = "Organizador"
+              ),
+
+              CardFerramenta(
+                inputId = "SelecionarExtrato",
+                icone = "bank",
+                titulo = "Extrato Bancário",
+                descricao = "Organizador"
+              ),
+
+              CardFerramenta(
+                inputId = "SelecionarFichaRazao",
+                icone = "file-earmark-text",
+                titulo = "Ficha Razão",
+                descricao = "Organizador"
+              ),
+
+              CardFerramenta(
+                inputId = "SelecionarConciliadorFichaRazao",
+                icone = "check2-square",
+                titulo = "Ficha Razão",
+                descricao = "Conciliador"
+              ),
+
+              CardFerramenta(
+                inputId = "SelecionarFolhas",
+                icone = "people",
+                titulo = "Folhas de Pagamento",
+                descricao = "Organizador"
+              ),
+
+              CardFerramenta(
+                inputId = "SelecionarGuia",
+                icone = "receipt",
+                titulo = "Guia de Recebimento",
+                descricao = "Organizador"
               ),
 
               CardFerramenta(
                 inputId = "SelecionarOB",
                 icone = "arrow-left-right",
                 titulo = "Ordens Bancárias",
-                descricao = "Processar arquivos"
+                descricao = "Organizador"
               ),
 
               CardFerramenta(
                 inputId = "SelecionarRetencao",
                 icone = "shield-check",
                 titulo = "Retenção Realizada",
-                descricao = "Consolidar retenções"
+                descricao = "Organizador"
               )
             )
           )

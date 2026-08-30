@@ -182,6 +182,179 @@ Shiny.addCustomMessageHandler(
 
 
 
+// CONCILIADOR CONTA CORRENTE 7988X
+
+Shiny.addCustomMessageHandler(
+  "estado_competencia_conciliador_conta_corrente",
+  function(msg) {
+
+    const botao =
+      document.getElementById(
+        "ConfirmarCompetenciaConciliadorContaCorrente"
+      );
+
+    const uploads =
+      document.querySelectorAll(
+        ".upload-conciliador-conta-corrente-extrato, .upload-conciliador-conta-corrente-razao"
+      );
+
+    if (botao) {
+
+      if (msg.confirmada) {
+        botao.classList.add(
+          "competencia-confirmada"
+        );
+      } else {
+        botao.classList.remove(
+          "competencia-confirmada"
+        );
+      }
+    }
+
+    uploads.forEach(function(upload) {
+
+      if (msg.confirmada) {
+        upload.classList.remove(
+          "upload-bloqueado"
+        );
+      } else {
+        upload.classList.add(
+          "upload-bloqueado"
+        );
+      }
+    });
+  }
+);
+
+
+Shiny.addCustomMessageHandler(
+  "estado_upload_conciliador_conta_corrente_extrato",
+  function(msg) {
+
+    const upload =
+      document.querySelector(
+        ".upload-conciliador-conta-corrente-extrato"
+      );
+
+    if (!upload) return;
+
+    upload.classList.remove(
+      "upload-carregando"
+    );
+
+    if (msg.carregado) {
+      upload.classList.add(
+        "upload-carregado"
+      );
+    } else {
+      upload.classList.remove(
+        "upload-carregado"
+      );
+    }
+  }
+);
+
+
+Shiny.addCustomMessageHandler(
+  "estado_upload_conciliador_conta_corrente_razao",
+  function(msg) {
+
+    const upload =
+      document.querySelector(
+        ".upload-conciliador-conta-corrente-razao"
+      );
+
+    if (!upload) return;
+
+    upload.classList.remove(
+      "upload-carregando"
+    );
+
+    if (msg.carregado) {
+      upload.classList.add(
+        "upload-carregado"
+      );
+    } else {
+      upload.classList.remove(
+        "upload-carregado"
+      );
+    }
+  }
+);
+
+
+Shiny.addCustomMessageHandler(
+  "estado_download_conciliador_conta_corrente",
+  function(msg) {
+
+    const wrapper =
+      document.getElementById(
+        "DownloadConciliadorContaCorrente_wrapper"
+      );
+
+    if (!wrapper) return;
+
+    if (msg.liberado) {
+
+      wrapper.classList.remove(
+        "download-desabilitado"
+      );
+
+      wrapper.classList.add(
+        "download-liberado"
+      );
+
+    } else {
+
+      wrapper.classList.remove(
+        "download-liberado"
+      );
+
+      wrapper.classList.add(
+        "download-desabilitado"
+      );
+    }
+  }
+);
+
+
+Shiny.addCustomMessageHandler(
+  "etapa_conciliador_conta_corrente",
+  function(msg) {
+
+    const etapaAtual = msg.etapa;
+
+    for (let i = 1; i <= 4; i++) {
+
+      const etapa =
+        document.getElementById(
+          "EtapaConciliadorContaCorrente" + i
+        );
+
+      if (!etapa) continue;
+
+      etapa.classList.remove(
+        "etapa-ativa",
+        "etapa-concluida"
+      );
+
+      if (i < etapaAtual) {
+        etapa.classList.add(
+          "etapa-concluida"
+        );
+      }
+
+      if (i === etapaAtual) {
+        etapa.classList.add(
+          "etapa-ativa"
+        );
+      }
+    }
+  }
+);
+
+
+
 // CONTROLE INVESTIMENTOS
 
 Shiny.addCustomMessageHandler(
@@ -855,6 +1028,157 @@ Shiny.addCustomMessageHandler(
 
     });
 
+  }
+);
+
+
+// CONCILIADOR FICHA RAZÃO
+
+Shiny.addCustomMessageHandler(
+  "estado_competencia_conciliador_ficha_razao",
+  function(msg) {
+
+    const botao =
+      document.getElementById(
+        "ConfirmarCompetenciaConciliadorFichaRazao"
+      );
+
+    const upload =
+      document.querySelector(
+        ".upload-conciliador-ficha-razao"
+      );
+
+    if (botao) {
+
+      if (msg.confirmada) {
+        botao.classList.add(
+          "competencia-confirmada"
+        );
+      } else {
+        botao.classList.remove(
+          "competencia-confirmada"
+        );
+      }
+    }
+
+    if (upload) {
+
+      if (msg.confirmada) {
+        upload.classList.remove(
+          "upload-bloqueado"
+        );
+      } else {
+        upload.classList.add(
+          "upload-bloqueado"
+        );
+      }
+    }
+  }
+);
+
+
+Shiny.addCustomMessageHandler(
+  "estado_upload_conciliador_ficha_razao",
+  function(msg) {
+
+    const upload =
+      document.querySelector(
+        ".upload-conciliador-ficha-razao"
+      );
+
+    if (!upload) return;
+
+    upload.classList.remove(
+      "upload-carregando"
+    );
+
+    if (msg.carregado) {
+      upload.classList.add(
+        "upload-carregado"
+      );
+    } else {
+      upload.classList.remove(
+        "upload-carregado"
+      );
+    }
+  }
+);
+
+
+Shiny.addCustomMessageHandler(
+  "estado_download_conciliador_ficha_razao",
+  function(msg) {
+
+    const wrapper =
+      document.getElementById(
+        "DownloadConciliadorFichaRazao_wrapper"
+      );
+
+    if (!wrapper) return;
+
+    if (msg.liberado) {
+
+      wrapper.classList.remove(
+        "download-desabilitado"
+      );
+
+      wrapper.classList.add(
+        "download-liberado"
+      );
+
+    } else {
+
+      wrapper.classList.remove(
+        "download-liberado"
+      );
+
+      wrapper.classList.add(
+        "download-desabilitado"
+      );
+    }
+  }
+);
+
+
+Shiny.addCustomMessageHandler(
+  "etapa_conciliador_ficha_razao",
+  function(msg) {
+
+    const stepper =
+      document.getElementById(
+        "StepperConciliadorFichaRazao"
+      );
+
+    if (!stepper) return;
+
+    const etapaAtual = msg.etapa;
+
+    for (let i = 1; i <= 4; i++) {
+
+      const etapa =
+        document.getElementById(
+          "EtapaConciliadorFichaRazao" + i
+        );
+
+      if (!etapa) continue;
+
+      etapa.classList.remove(
+        "etapa-ativa",
+        "etapa-concluida"
+      );
+
+      if (i < etapaAtual) {
+        etapa.classList.add(
+          "etapa-concluida"
+        );
+      }
+
+      if (i === etapaAtual) {
+        etapa.classList.add(
+          "etapa-ativa"
+        );
+      }
+    }
   }
 );
 

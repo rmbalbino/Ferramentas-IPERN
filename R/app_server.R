@@ -16,6 +16,11 @@ app_server <- function(input, output, session){
   ArquivoSelecionadoAlmoxarifado <- reactiveVal(FALSE)
   ArquivoDescricaoSelecionadoAlmoxarifado <- reactiveVal(FALSE)
 
+  CompetenciaConfirmadaConciliadorContaCorrente <- reactiveVal(FALSE)
+  DownloadLiberadoConciliadorContaCorrente <- reactiveVal(FALSE)
+  ArquivoExtratoSelecionadoConciliadorContaCorrente <- reactiveVal(FALSE)
+  ArquivoRazaoSelecionadoConciliadorContaCorrente <- reactiveVal(FALSE)
+
   CompetenciaConfirmadaInvestimento <- reactiveVal(FALSE)
   DownloadLiberadoInvestimento <- reactiveVal(FALSE)
   ArquivoSelecionadoInvestimento <- reactiveVal(FALSE)
@@ -32,6 +37,10 @@ app_server <- function(input, output, session){
   CompetenciaConfirmadaRazao <- reactiveVal(FALSE)
   DownloadLiberadoRazao <- reactiveVal(FALSE)
   ArquivoSelecionadoRazao <- reactiveVal(FALSE)
+
+  CompetenciaConfirmadaConciliadorFichaRazao <- reactiveVal(FALSE)
+  DownloadLiberadoConciliadorFichaRazao <- reactiveVal(FALSE)
+  ArquivoSelecionadoConciliadorFichaRazao <- reactiveVal(FALSE)
 
   CompetenciaConfirmadaFDP <- reactiveVal(FALSE)
   DownloadLiberadoFDP <- reactiveVal(FALSE)
@@ -58,6 +67,11 @@ app_server <- function(input, output, session){
                      DownloadLiberadoAlmoxarifado, ArquivoSelecionadoAlmoxarifado, ArquivoDescricaoSelecionadoAlmoxarifado)
 
 
+  ServerConciliadorContaCorrente(input, session, CompetenciaConfirmadaConciliadorContaCorrente,
+                                 DownloadLiberadoConciliadorContaCorrente, ArquivoExtratoSelecionadoConciliadorContaCorrente,
+                                 ArquivoRazaoSelecionadoConciliadorContaCorrente)
+
+
   ServerControleInvestimentos(input, session, CompetenciaConfirmadaInvestimento,
                               DownloadLiberadoInvestimento, ArquivoSelecionadoInvestimento, ArquivoArtigosSelecionadoInvestimento)
 
@@ -69,6 +83,9 @@ app_server <- function(input, output, session){
 
 
   ServerFichaRazao(input, session, CompetenciaConfirmadaRazao, DownloadLiberadoRazao, ArquivoSelecionadoRazao)
+
+
+  ServerConciliadorFichaRazao(input, session, CompetenciaConfirmadaConciliadorFichaRazao, DownloadLiberadoConciliadorFichaRazao, ArquivoSelecionadoConciliadorFichaRazao)
 
 
   ServerFolhasPagamento(input, session, CompetenciaConfirmadaFDP, DownloadLiberadoFDP, ArquivoSelecionadoFDP)
@@ -89,6 +106,14 @@ app_server <- function(input, output, session){
 
   observeEvent(input$SelecionarAlmoxarifado, {
     FerramentaSelecionada("almoxarifado")
+  })
+
+  observeEvent(input$SelecionarConciliadorContaCorrente, {
+    FerramentaSelecionada("ConciliadorContaCorrente")
+  })
+
+  observeEvent(input$SelecionarConciliadorFichaRazao, {
+    FerramentaSelecionada("ConciliadorFichaRazao")
   })
 
   observeEvent(input$SelecionarExtrato, {
@@ -135,6 +160,11 @@ app_server <- function(input, output, session){
       ArquivoSelecionadoAlmoxarifado(FALSE)
       ArquivoDescricaoSelecionadoAlmoxarifado(FALSE)
 
+      CompetenciaConfirmadaConciliadorContaCorrente(FALSE)
+      DownloadLiberadoConciliadorContaCorrente(FALSE)
+      ArquivoExtratoSelecionadoConciliadorContaCorrente(FALSE)
+      ArquivoRazaoSelecionadoConciliadorContaCorrente(FALSE)
+
       # Controle Investimentos:
       CompetenciaConfirmadaInvestimento(FALSE)
       DownloadLiberadoInvestimento(FALSE)
@@ -149,6 +179,10 @@ app_server <- function(input, output, session){
       CompetenciaConfirmadaExtrato(FALSE)
       DownloadLiberadoExtrato(FALSE)
       ArquivoSelecionadoExtrato(FALSE)
+
+      CompetenciaConfirmadaRazao(FALSE)
+      DownloadLiberadoRazao(FALSE)
+      ArquivoSelecionadoRazao(FALSE)
 
       CompetenciaConfirmadaRazao(FALSE)
       DownloadLiberadoRazao(FALSE)
@@ -214,6 +248,20 @@ app_server <- function(input, output, session){
     if (identical(Ferramenta, "almoxarifado")) {
       return(
         PainelAlmoxarifado()
+      )
+    }
+
+
+    if (identical(Ferramenta, "ConciliadorContaCorrente")) {
+      return(
+        PainelConciliadorContaCorrente()
+      )
+    }
+
+
+    if (identical(Ferramenta, "ConciliadorFichaRazao")) {
+      return(
+        PainelConciliadorFichaRazao()
       )
     }
 
@@ -327,10 +375,16 @@ app_server <- function(input, output, session){
   ProcessarAlmoxarifado(input, session, Observ_function, DownloadLiberadoAlmoxarifado)
 
 
+  ProcessarConciliadorContaCorrente(input, session, Observ_function, DownloadLiberadoConciliadorContaCorrente)
+
+
   ProcessarExtratoBancario(input, session, Observ_function, DownloadLiberadoExtrato)
 
 
   ProcessarFichaRazao(input, session, Observ_function, DownloadLiberadoRazao)
+
+
+  ProcessarConciliadorFichaRazao(input, session, Observ_function, DownloadLiberadoConciliadorFichaRazao)
 
 
   ProcessarFolhasPagamento(input, session, Observ_function, DownloadLiberadoFDP)
@@ -354,6 +408,28 @@ app_server <- function(input, output, session){
 
   # Download --------------------------------------------------------------------------------------------------------------------------------------------------
 
+  # Botao para baixar Almoxarifado:
+  output$DownloadAlmoxarifado <- downloadHandler(
+
+    # Nome do arquivo que sera baixado:
+    filename = function(){ paste0("Almoxarifado", " - ", MesAnoReativo$MesAno, ".xlsx") },
+
+    # Exportando arquivo export(arquivo, nome do arquivo):
+    content = function(file){ export(DadosReativo$Dados, file) })
+
+
+
+  # Botao para baixar Conciliação 7988X:
+  output$DownloadConciliadorContaCorrente <- downloadHandler(
+
+    # Nome do arquivo que sera baixado:
+    filename = function() { paste0("Conciliação Conta Corrente 7988X", " - ", MesAnoReativo$MesAno, ".xlsx") },
+
+    # Exportando arquivo export(arquivo, nome do arquivo):
+    content = function(file) { export(DadosReativo$Dados, file) })
+
+
+
   # Botao para baixar Ficha Razão:
   output$DownloadRazao <- downloadHandler(
 
@@ -362,6 +438,17 @@ app_server <- function(input, output, session){
 
     # Exportando arquivo export(arquivo, nome do arquivo):
     content = function(file){ export(DadosReativo$Dados, file) })
+
+
+
+  # Botão para baixar Conciliação Ficha Razão:
+  output$DownloadConciliadorFichaRazao <- downloadHandler(
+
+    # Nome do arquivo que sera baixado:
+    filename = function() { paste0("Conciliação Ficha Razão", " - ", MesAnoReativo$MesAno, ".xlsx") },
+
+    # Exportando arquivo export(arquivo, nome do arquivo):
+    content = function(file) { export(DadosReativo$Dados, file) })
 
 
 
@@ -431,16 +518,6 @@ app_server <- function(input, output, session){
     # Exportando arquivo export(arquivo, nome do arquivo):
     content = function(file){ export(DadosReativo$Dados, file) })
 
-
-
-  # Botao para baixar Almoxarifado:
-  output$DownloadAlmoxarifado <- downloadHandler(
-
-    # Nome do arquivo que sera baixado:
-    filename = function(){ paste0("Almoxarifado", " - ", MesAnoReativo$MesAno, ".xlsx") },
-
-    # Exportando arquivo export(arquivo, nome do arquivo):
-    content = function(file){ export(DadosReativo$Dados, file) })
 
 
 
