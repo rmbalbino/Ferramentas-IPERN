@@ -2,7 +2,7 @@
 
 # Tratar pdf do Extrato ----------------------------------------------------------------------------------------------
 
-Extrair_Extrato <- function(EXTRATO){
+Extrair_ExtratoC <- function(EXTRATO){
 
 
   # Importando dados:

@@ -2,7 +2,7 @@ ExtrairExtratoGeral <- function(Arquivo) {
 
   tryCatch(
 
-    Extrair_Extrato(
+    Extrair_ExtratoC(
       Arquivo
     ),
 
