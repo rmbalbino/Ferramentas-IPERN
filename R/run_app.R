@@ -33,88 +33,13 @@ run_app <- function(
     ...
 ) {
 
-  # Seleção do Navegador:
-  # dirNavegador <- r"(H:\Material de Estudos\R\Shiny\Complementos\OrganizadorIpern\GoogleChromePortable\App\Chrome-bin\chrome.exe)"
-  # # dirNavegador <- NULL
-  #
-  # if (!is.null(dirNavegador) && file.exists(dirNavegador)) {
-  #
-  #   message("Modo de Teste: Usando navegador específico em modo App.")
-  #
-  #   options(browser = function(url) {
-  #
-  #     # Pega resolução da tela
-  #     res_h <- shell("wmic path Win32_VideoController get CurrentHorizontalResolution /value", intern = TRUE)
-  #     res_v <- shell("wmic path Win32_VideoController get CurrentVerticalResolution /value", intern = TRUE)
-  #
-  #     screen_w <- as.numeric(gsub("\\D", "", res_h[grep("CurrentHorizontal", res_h)]))
-  #     screen_h <- as.numeric(gsub("\\D", "", res_v[grep("CurrentVertical", res_v)]))
-  #
-  #     w <- 1010
-  #     h <- 675
-  #     left <- round((screen_w - w) / 2)
-  #     top  <- round((screen_h - h) / 2)
-  #
-  #     cmd <- paste0(
-  #       shQuote(dirNavegador),
-  #       #" --start-minimized",
-  #       " --window-size=", w, ",", h,
-  #       " --window-position=", left, ",", top,
-  #       " --app=", url
-  #     )
-  #
-  #     shell(cmd, wait = FALSE)
-  #
-  #   })
-  #
-  # } else if (!is.null(dirNavegador) && !file.exists(dirNavegador)) {
-  #
-  #   warning("Caminho do navegador informado não encontrado. Seguindo com padrão do sistema.")
-  #
-  # } else {
-  #
-  #   message("O R usará a configuração de browser do sistema ou vbs.")
-  #
-  # }
-
-
-  # # Diretório do navegador para testes:
-  # dirNavegador <- r"(H:\Material de Estudos\R\Shiny\Complementos\GoogleChromePortable\App\Chrome-bin\chrome.exe)"
-  #
-  #
-  #   base::options(browser = function(url) {
-  #
-  #     # Pega resolução da tela
-  #     res_h <- shell("wmic path Win32_VideoController get CurrentHorizontalResolution /value", intern = TRUE)
-  #     res_v <- shell("wmic path Win32_VideoController get CurrentVerticalResolution /value", intern = TRUE)
-  #
-  #     screen_w <- as.numeric(gsub("\\D", "", res_h[grep("CurrentHorizontal", res_h)]))
-  #     screen_h <- as.numeric(gsub("\\D", "", res_v[grep("CurrentVertical", res_v)]))
-  #
-  #     w <- 1010
-  #     h <- 675
-  #     left <- round((screen_w - w) / 2)
-  #     top  <- round((screen_h - h) / 2)
-  #
-  #     cmd <- paste0(
-  #       shQuote(dirNavegador),
-  #       #" --start-minimized",
-  #       " --window-size=", w, ",", h,
-  #       " --window-position=", left, ",", top,
-  #       " --app=", url
-  #     )
-  #
-  #     shell(cmd, wait = FALSE)
-  #
-  #   })
-
 
   # Retirando limite de upload:
   base::options(shiny.maxRequestSize = 100 * 1024^2)
 
 
   # Localiza e define o tessdata portátil
-  Sys.setenv(TESSDATA_PREFIX = system.file("app/www", package = "organizadoripern"))
+  Sys.setenv(TESSDATA_PREFIX = system.file("app/www", package = "ferramentasipern"))
 
 
   # Configurações de Rede:

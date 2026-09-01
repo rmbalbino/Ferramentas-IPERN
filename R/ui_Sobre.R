@@ -141,7 +141,7 @@ fui_Sobre <- function() {
 
                 p(
                   paste(
-                    "O IPERN Organizador foi desenvolvido para facilitar e",
+                    "As Ferramentas foram desenvolvidas para facilitar e",
                     "padronizar o tratamento de arquivos financeiros e contábeis",
                     "utilizados nas rotinas do Instituto de Previdência dos",
                     "Servidores do Estado do Rio Grande do Norte."

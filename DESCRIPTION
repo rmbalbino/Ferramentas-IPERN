@@ -1,5 +1,5 @@
-Package: organizadoripern
-Title: Organizador-IPERN
+Package: ferramentasipern
+Title: Ferramentas-IPERN
 Version: 0.0.0.9000
 Authors@R: 
     person("Renan de Melo", "Balbino", , "rmbalbino@hotmail.com", role = c("aut", "cre"))
@@ -7,8 +7,8 @@ Description: Desenvolvimento de aplicações voltadas à organização,
     automação e consolidação de dados institucionais dos setores contábil
     e financeiro do IPERN.
 License: MIT + file LICENSE
-URL: https://github.com/rmbalbino/Organizador-IPERN
-BugReports: https://github.com/rmbalbino/Organizador-IPERN/issues
+URL: https://github.com/rmbalbino/Ferramentas-IPERN
+BugReports: https://github.com/rmbalbino/Ferramentas-IPERN/issues
 Imports: 
     archive,
     bslib,

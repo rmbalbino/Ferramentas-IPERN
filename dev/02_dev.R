@@ -47,7 +47,7 @@ usethis::use_test("app")
 # Documentation
 
 ## Vignette ----
-usethis::use_vignette("Organizador-IPERN")
+usethis::use_vignette("Ferramentas-IPERN")
 devtools::build_vignettes()
 
 ## Code Coverage----

@@ -9,7 +9,7 @@
 #'
 #' @noRd
 app_sys <- function(...) {
-  system.file(..., package = "organizadoripern")
+  system.file(..., package = "ferramentasipern")
 }
 
 
@@ -45,6 +45,7 @@ get_golem_config <- function(
 
 #' @importFrom conflicted conflict_prefer
 NULL
+
 
 # Definindo preferências de conflito globalmente para o pacote
 conflicted::conflict_prefer("filter", "dplyr", quiet = TRUE)

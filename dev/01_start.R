@@ -19,8 +19,8 @@
 ## to change the name in the app_sys() function in app_config.R /!\
 ##
 golem::fill_desc(
-  pkg_name = "organizadoripern",
-  pkg_title = "Organizador-IPERN",
+  pkg_name = "ferramentasipern",
+  pkg_title = "Ferramentas-IPERN",
   pkg_description = paste(
     "Desenvolvimento de aplicações voltadas à organização, automação e",
     "consolidação de dados institucionais dos setores contábil e financeiro",
@@ -32,7 +32,7 @@ golem::fill_desc(
     email = "rmbalbino@hotmail.com",
     role = c("aut", "cre")
   ),
-  repo_url = "https://github.com/rmbalbino/Organizador-IPERN",
+  repo_url = "https://github.com/rmbalbino/Ferramentas-IPERN",
   pkg_version = "0.0.0.9000",
   set_options = TRUE
 )
@@ -69,7 +69,7 @@ usethis::use_git()
 ## Sets the remote associated with 'name' to 'url'
 usethis::use_git_remote(
   name = "origin",
-  url = "https://github.com/rmbalbino/Organizador-IPERN.git"
+  url = "https://github.com/rmbalbino/Ferramentas-IPERN.git"
 )
 
 # You're now set! ----

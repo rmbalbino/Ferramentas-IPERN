@@ -15,7 +15,7 @@ app_ui <- function(request) {
 
       tags$script(
         HTML(
-          "document.title = 'Organizador • IPERN';"
+          "document.title = 'Ferramentas • IPERN';"
         )
       ),
 
@@ -96,7 +96,7 @@ golem_add_external_resources <- function() {
     favicon(ext = "ico", rel = "icon"),
     bundle_resources(
       path = app_sys("app/www"),
-      app_title = "Organizador-IPERN"
+      app_title = "Ferramentas-IPERN"
     )
     # Adicione aqui outros recursos externos.
     # por exemplo, você pode adicionar shinyalert::useShinyalert()
