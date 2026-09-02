@@ -10,3 +10,5 @@ R/Extrator-OrdensBancarias-Navegacao.R
 R/Extrator-OrdensBancarias-OBs.R
 R/Extrator-OrdensBancarias.R
 .Renviron
+R/Extrator-AcessoGeral.R
+

@@ -248,7 +248,15 @@ ServerExtratorOBs <- function(
 
     # EXTRAÇÃO ─────────────────────────────────────────────
 
+    # EXTRAÇÃO ─────────────────────────────────────────────
+
     b <- NULL
+
+    shinybusy::show_modal_spinner(
+      spin = "semipolar",
+      color = "#7A0026",
+      text = "Extraindo Ordens Bancárias..."
+    )
 
     tryCatch({
 
@@ -309,14 +317,7 @@ ServerExtratorOBs <- function(
 
     }, finally = {
 
-      if (!is.null(b)) {
-
-        try(
-          b$close(),
-          silent = TRUE
-        )
-      }
-
+      shinybusy::remove_modal_spinner()
 
       updateActionButton(
         session = session,

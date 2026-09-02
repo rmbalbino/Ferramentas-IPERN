@@ -8,3 +8,6 @@ $run_dev.*
 ^\.positai$
 ^\.claude$
 ^LICENSE\.md$
+^app\.R$
+^rsconnect$
+^\.rscignore$

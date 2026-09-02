@@ -11,7 +11,9 @@ URL: https://github.com/rmbalbino/Ferramentas-IPERN
 BugReports: https://github.com/rmbalbino/Ferramentas-IPERN/issues
 Imports: 
     archive,
+    bsicons,
     bslib,
+    chromote,
     config,
     conflicted,
     dplyr,
@@ -20,18 +22,19 @@ Imports:
     lubridate,
     magrittr,
     pdftools,
+    pkgload,
     purrr,
+    readr,
     rio,
     shiny,
     shinybusy,
+    shinyjs,
     stringr,
     tesseract,
     tibble,
     tidyr
 Config/roxygen2/version: 8.0.0
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.3
-Suggests: 
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3

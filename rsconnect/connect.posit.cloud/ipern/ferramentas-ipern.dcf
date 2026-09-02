@@ -1,0 +1,12 @@
+name: ferramentas-ipern
+title: Ferramentas-IPERN
+username: ipern
+account: ipern
+server: connect.posit.cloud
+hostUrl: https://api.connect.posit.cloud/v1
+appId: 01a062eb-339f-83b2-d9f0-ac084242491d
+bundleId:
+url: https://connect.posit.cloud/ipern/content/01a062eb-339f-83b2-d9f0-ac084242491d
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

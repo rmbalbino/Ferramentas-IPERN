@@ -10,8 +10,10 @@
 #' @import shinybusy
 #' @import bslib
 #' @import bsicons
+#' @import chromote
 #' @import shinyjs
 #' @import rio
+#' @import readr
 #' @import dplyr
 #' @import purrr
 #' @import tidyr
@@ -23,7 +25,7 @@
 #' @import pdftools
 #' @import tesseract
 #' @import archive
-#' @importFrom golem with_golem_options
+#' @import golem
 run_app <- function(
     dirNavegador = NULL, # Valor padrão é NULL
     onStart = NULL,

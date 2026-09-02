@@ -1,0 +1,12 @@
+name: Ferramentas-IPERN
+title: Ferramentas-IPERN
+username: ipern
+account: ipern
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17806867
+bundleId:
+url: https://ipern.shinyapps.io/Ferramentas-IPERN/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
