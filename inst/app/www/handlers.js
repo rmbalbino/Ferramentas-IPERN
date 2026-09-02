@@ -1538,6 +1538,157 @@ Shiny.addCustomMessageHandler(
 
 
 
+// EXTRAIR ORDENS BANCARIAS
+
+// EXTRATOR DE ORDENS BANCÁRIAS
+
+Shiny.addCustomMessageHandler(
+  "etapa_extrator_obs",
+  function(msg) {
+
+    const etapas = [
+      document.getElementById("EtapaExtratorOBs1"),
+      document.getElementById("EtapaExtratorOBs2"),
+      document.getElementById("EtapaExtratorOBs3"),
+      document.getElementById("EtapaExtratorOBs4")
+    ];
+
+    const linhas = document.querySelectorAll(
+      "#StepperExtratorOBs .etapa-linha"
+    );
+
+    if (etapas.some(x => !x)) return;
+
+    etapas.forEach(function(etapa, indice) {
+
+      etapa.classList.remove(
+        "etapa-ativa",
+        "etapa-concluida"
+      );
+
+      const numero =
+        etapa.querySelector(".etapa-numero");
+
+      if (indice + 1 < msg.etapa) {
+
+        etapa.classList.add(
+          "etapa-concluida"
+        );
+
+        if (numero) {
+          numero.textContent = "✓";
+        }
+
+      } else {
+
+        if (numero) {
+          numero.textContent =
+            String(indice + 1);
+        }
+      }
+
+      if (indice + 1 === msg.etapa) {
+        etapa.classList.add(
+          "etapa-ativa"
+        );
+      }
+    });
+
+    linhas.forEach(function(linha, indice) {
+
+      linha.classList.remove(
+        "etapa-linha-concluida"
+      );
+
+      if (indice < msg.etapa - 1) {
+        linha.classList.add(
+          "etapa-linha-concluida"
+        );
+      }
+    });
+  }
+);
+
+Shiny.addCustomMessageHandler(
+  "estado_download_extrator_obs",
+  function(msg) {
+
+    const wrapper =
+      document.getElementById(
+        "DownloadExtratorOBs_wrapper"
+      );
+
+    if (!wrapper) return;
+
+    if (msg.liberado) {
+
+      wrapper.classList.remove(
+        "download-desabilitado"
+      );
+
+      wrapper.classList.add(
+        "download-liberado"
+      );
+
+    } else {
+
+      wrapper.classList.remove(
+        "download-liberado"
+      );
+
+      wrapper.classList.add(
+        "download-desabilitado"
+      );
+    }
+  }
+);
+
+// MÁSCARAS - EXTRATOR DE OBS
+
+$(document).on(
+  "input",
+  "#UsuarioExtratorOBs",
+  function() {
+
+    let valor = this.value
+      .replace(/\D/g, "")
+      .slice(0, 11);
+
+    valor = valor
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+    this.value = valor;
+  }
+);
+
+
+$(document).on(
+  "input",
+  "#UGExtratorOBs",
+  function() {
+
+    this.value = this.value
+      .replace(/\D/g, "")
+      .slice(0, 6);
+  }
+);
+
+
+$(document).on(
+  "input",
+  "#GestaoExtratorOBs",
+  function() {
+
+    this.value = this.value
+      .replace(/\D/g, "")
+      .slice(0, 5);
+  }
+);
+
+
+
 // RETENCAO REALIZADA
 
 Shiny.addCustomMessageHandler(

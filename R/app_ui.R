@@ -33,11 +33,11 @@ app_ui <- function(request) {
       tags$link(
         rel = "stylesheet",
         type = "text/css",
-        href = "www/styles.css?v=4"
+        href = "www/styles.css?v=6"
       ),
 
       tags$script(
-        src = "www/handlers.js?v=5"
+        src = "www/handlers.js?v=9"
       )
     ),
 

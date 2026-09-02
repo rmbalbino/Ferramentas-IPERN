@@ -4,3 +4,9 @@
 .httr-oauth
 .DS_Store
 .quarto
+R/Extrator-OrdensBancarias-Extracao.R
+R/Extrator-OrdensBancarias-Filtros.R
+R/Extrator-OrdensBancarias-Navegacao.R
+R/Extrator-OrdensBancarias-OBs.R
+R/Extrator-OrdensBancarias.R
+.Renviron

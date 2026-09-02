@@ -54,6 +54,8 @@ app_server <- function(input, output, session){
   DownloadLiberadoOB <- reactiveVal(FALSE)
   ArquivoSelecionadoOB <- reactiveVal(FALSE)
 
+  DownloadLiberadoExtratorOBs <- reactiveVal(FALSE)
+
   CompetenciaConfirmadaRR <- reactiveVal(FALSE)
   DownloadLiberadoRR <- reactiveVal(FALSE)
   ArquivoSelecionadoRR <- reactiveVal(FALSE)
@@ -94,6 +96,9 @@ app_server <- function(input, output, session){
   ServerGuiaRecebimento(input, session, CompetenciaConfirmadaGR, DownloadLiberadoGR, ArquivoSelecionadoGR)
 
 
+  ServerExtratorOBs(input, session, DadosReativo, DownloadLiberadoExtratorOBs)
+
+
   ServerOrdensBancarias(input, session, CompetenciaConfirmadaOB, DownloadLiberadoOB, ArquivoSelecionadoOB)
 
 
@@ -130,6 +135,10 @@ app_server <- function(input, output, session){
 
   observeEvent(input$SelecionarGuia, {
     FerramentaSelecionada("guia_recebimento")
+  })
+
+  observeEvent(input$SelecionarExtratorOBs, {
+    FerramentaSelecionada("ExtratorOBs")
   })
 
   observeEvent(input$SelecionarOB, {
@@ -201,6 +210,8 @@ app_server <- function(input, output, session){
       CompetenciaConfirmadaOB(FALSE)
       DownloadLiberadoOB(FALSE)
       ArquivoSelecionadoOB(FALSE)
+
+      DownloadLiberadoExtratorOBs(FALSE)
 
       # Retenção Realizada:
       CompetenciaConfirmadaRR(FALSE)
@@ -302,6 +313,13 @@ app_server <- function(input, output, session){
     if (identical(Ferramenta, "guia_recebimento")) {
       return(
         PainelGuiaRecebimento()
+      )
+    }
+
+
+    if (identical(Ferramenta, "ExtratorOBs")) {
+      return(
+        PainelExtratorOBs()
       )
     }
 
@@ -495,6 +513,21 @@ app_server <- function(input, output, session){
 
     # Exportando arquivo export(arquivo, nome do arquivo):
     content = function(file){ export(DadosReativo$Dados, file) })
+
+
+
+  # Botão para baixar Extrator de Ordens Bancárias:
+  output$DownloadExtratorOBs <- downloadHandler(
+
+    filename = function() { paste0("Ordens Bancarias - ",
+                                   format(input$DataInicioExtratorOBs, "%d-%m-%Y"), " a ",
+                                   format(input$DataTerminoExtratorOBs, "%d-%m-%Y"), ".xlsx") },
+
+    content = function(file) {
+
+      req(DadosReativo$Dados, DownloadLiberadoExtratorOBs())
+
+      export(list("Ordens Bancarias" = DadosReativo$Dados$resultado_final, "Arrecadado" = DadosReativo$Dados$Arrecadado), file) })
 
 
 

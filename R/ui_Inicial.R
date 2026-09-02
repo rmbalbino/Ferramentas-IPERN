@@ -135,6 +135,13 @@ fui_Inicial <- function() {
               ),
 
               CardFerramenta(
+                inputId = "SelecionarExtratorOBs",
+                icone = "download",
+                titulo = "Ordens Bancárias",
+                descricao = "Extrator"
+              ),
+
+              CardFerramenta(
                 inputId = "SelecionarOB",
                 icone = "arrow-left-right",
                 titulo = "Ordens Bancárias",

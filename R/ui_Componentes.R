@@ -77,12 +77,12 @@ UploadFerramenta <- function(
 
 
 StepperFerramenta <- function(
-
-  prefixo,
-  Etapa1 = "Competência",
-  Etapa2 = "Arquivos",
-  Etapa3 = "Processamento",
-  Etapa4 = "Resultado") {
+    prefixo,
+    Etapa1 = "Competência",
+    Etapa2 = "Arquivos",
+    Etapa3 = "Processamento",
+    Etapa4 = "Resultado"
+) {
 
   div(
     id = paste0("Stepper", prefixo),
@@ -101,7 +101,7 @@ StepperFerramenta <- function(
       id = paste0("Etapa", prefixo, "2"),
       class = "etapa",
       div(class = "etapa-numero", "2"),
-      span("Arquivos")
+      span(Etapa2)
     ),
 
     div(class = "etapa-linha"),
@@ -110,7 +110,7 @@ StepperFerramenta <- function(
       id = paste0("Etapa", prefixo, "3"),
       class = "etapa",
       div(class = "etapa-numero", "3"),
-      span("Processamento")
+      span(Etapa3)
     ),
 
     div(class = "etapa-linha"),
@@ -119,7 +119,7 @@ StepperFerramenta <- function(
       id = paste0("Etapa", prefixo, "4"),
       class = "etapa",
       div(class = "etapa-numero", "4"),
-      span("Resultado")
+      span(Etapa4)
     )
   )
 }
