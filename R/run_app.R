@@ -46,8 +46,8 @@ run_app <- function(
 
   # Configurações de Rede:
   # options$port <- httpuv::randomPort()
-  options$port <- 3838
-  options$host <- "127.0.0.1"
+  # options$port <- 3838
+  # options$host <- "127.0.0.1"
   # options$launch.browser <- TRUE
 
 

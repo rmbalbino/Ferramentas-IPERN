@@ -4,12 +4,10 @@ iniciar_sistema <- function(
     intervalo = 0.1
 ) {
 
-  b <- chromote::ChromoteSession$new(
-    args = c(
-      "--no-sandbox",
-      "--disable-dev-shm-usage"
-    )
-  )
+  print(chromote::chromote_info())
+  print(chromote::get_chrome_args())
+
+  b <- chromote::ChromoteSession$new()
 
   b$view()
 
